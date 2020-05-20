@@ -1,0 +1,11 @@
+baseURL = "http://sebfisch.github.io/emf-adapter-tutorial"
+languageCode = "en-us"
+title = "EMF Adapter Tutorial"
+publishDir = "docs"
+theme = "book"
+enableGitInfo = true
+disableKinds = ['taxonomy', 'taxonomyTerm']
+
+[params]
+  BookSearch = false
+  BookComments = false
