@@ -21,3 +21,5 @@ If you want to practice using EMF adapters, there are programming tasks related 
 [tic-tac-toe]: https://en.wikipedia.org/wiki/Tic-tac-toe
 [lambda expressions]: https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
 [type parameters]: https://docs.oracle.com/javase/tutorial/java/generics/index.html
+
+The source code discussed in this tutorial is available online - including solutions to the programming tasks.
