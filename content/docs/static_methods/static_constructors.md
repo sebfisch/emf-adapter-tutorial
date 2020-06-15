@@ -67,7 +67,6 @@ For example, the `emptyWindow` method sets a default close operation on the crea
 	 * Constructs an empty window with the given title.
 	 *
 	 * @param title window title
-	 *
 	 * @return window object
 	 */
 	public static JFrame emptyWindow(final String title) {
@@ -82,7 +81,7 @@ Similarly, the `emptyBoard` method initializes the created board with the first 
 
 ```java
 	/**
-	 * Creates an board where no player has marked fields yet.
+	 * Creates a board where no player has marked fields yet.
 	 * The player X is the one to play first.
 	 *
 	 * @return model instance representing an empty board
