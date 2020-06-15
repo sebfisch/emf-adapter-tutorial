@@ -1,5 +1,5 @@
 ---
-title: Typed Object Adapters
+title: Object Adapter
 weight: 30
 ---
 

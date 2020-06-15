@@ -1,5 +1,5 @@
 ---
-title: Writing EMF adapters
+title: Plain Adapters
 weight: 20
 ---
 
