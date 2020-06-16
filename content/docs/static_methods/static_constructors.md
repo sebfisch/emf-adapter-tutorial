@@ -8,16 +8,8 @@ weight: 14
 Let's take a look at the main class used to start the game app.
 
 ```java
-/**
- * Implements a graphical user interface for playing the game.
- */
 public class TicTacToe {
 
-	/**
-	 * Runs the game.
-	 *
-	 * @param args command line arguments are ignored
-	 */
 	public static void main(final String[] args) {
 		SwingUtilities.invokeLater(() -> new TicTacToe().show());
 	}
@@ -27,18 +19,12 @@ public class TicTacToe {
 	private final Board board;
 	private final JFrame window;
 
-	/**
-	 * Creates a graphical user interface for the game.
-	 */
 	public TicTacToe() {
 		board = GameConstructors.emptyBoard();
 		window = UiConstructors.emptyWindow(WINDOW_TITLE);
 		window.getContentPane().add(BoardHelpers.getComponent(board));
 	}
 
-	/**
-	 * Displays a window for playing the game.
-	 */
 	public void show() {
 		window.pack();
 		window.setVisible(true);
@@ -63,37 +49,25 @@ By defining static contructor methods, we can hide the required initialization o
 For example, the `emptyWindow` method sets a default close operation on the created window:
 
 ```java
-	/**
-	 * Constructs an empty window with the given title.
-	 *
-	 * @param title window title
-	 * @return window object
-	 */
-	public static JFrame emptyWindow(final String title) {
-		final JFrame frame = new JFrame(title);
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-		return frame;
-	}
+public static JFrame emptyWindow(final String title) {
+  final JFrame frame = new JFrame(title);
+  frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+  frame.setResizable(false);
+  return frame;
+}
 ```
 
 Similarly, the `emptyBoard` method initializes the created board with the first player to move and the correct number of unmarked fields:
 
 ```java
-	/**
-	 * Creates a board where no player has marked fields yet.
-	 * The player X is the one to play first.
-	 *
-	 * @return model instance representing an empty board
-	 */
-	public static Board emptyBoard() {
-		final Board board = GameFactory.eINSTANCE.createBoard();
-		board.setCurrentPlayer(Player.X);
-		for (int index = 0; index < FIELD_COUNT; index++) {
-			board.getFields().add(emptyField(index));
-		}
-		return board;
-	}
+public static Board emptyBoard() {
+  final Board board = GameFactory.eINSTANCE.createBoard();
+  board.setCurrentPlayer(Player.X);
+  for (int index = 0; index < FIELD_COUNT; index++) {
+    board.getFields().add(emptyField(index));
+  }
+  return board;
+}
 ```
 
 You can inspect the complete implementation of the static constructors in the [constructors package].
