@@ -42,8 +42,8 @@ Our application does not yet use any EMF adapters.
 The constructor of the `TicTacToe` class uses static methods of different classes to create required instances.
 
 - The class `UiConstructors` is used to create user interface components that are configured in the way we need for our app.
-- The class `GameConstructors` is used to create instances of types
-- The class `BoardHelpers` defines functionality on model instances related to the `Board` class.
+- The class `GameConstructors` is used to create instances of types in our game-state model
+- The class `BoardHelpers` defines additional functionality on `Board` model instances.
 
 By defining static contructor methods, we can hide the required initialization of created instances.
 For example, the `emptyWindow` method sets a default close operation on the created window:
