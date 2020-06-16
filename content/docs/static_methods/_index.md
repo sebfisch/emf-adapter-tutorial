@@ -30,3 +30,7 @@ Start now by cloning the repository and creating a branch for the first step.
 [first step]: https://github.com/sebfisch/emf-adapter-tutorial-code/tree/step1-static-methods-v1/de.sebfisch.tictactoe
 
 If you don't want to run the game or write code yourself, you can look at existing code for the [first step] online.
+
+Next, we will discuss the [game-state model].
+
+[game-state model]: game_state_model

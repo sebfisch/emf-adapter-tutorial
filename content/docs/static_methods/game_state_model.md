@@ -26,3 +26,7 @@ For convenience, the `Field` class defines an attribute `index` which is the ind
 If it is not, the player hwo marked a field is stored in the `player` attribute of the `Mark` class.
 
 We can generate Java code for this model using the corresponding file `model/game.genmodel`. This will produce packages `game`, `game.impl` and `game.util` in the `src` folder of our project. The `game` package contains interfaces for every modelled type and a class `GameFactory` to create corresponding instances.
+
+Next, we will use the provided factory to define [static constructors].
+
+[static constructors]: ../static_constructors

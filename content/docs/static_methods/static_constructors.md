@@ -3,7 +3,7 @@ title: Static Constructors
 weight: 14
 ---
 
-# Defining static methods to construct required instances
+# Static methods constructing required instances
 
 Let's take a look at the main class used to start the game app.
 
