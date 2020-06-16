@@ -5,7 +5,7 @@ weight: 52
 
 # Functional interfaces and lambda expressions
 
-Functional interfaces are interfaces with exactly one method.
+Functional interfaces are interfaces with exactly one method (and possibly additional methods with default implementations.)
 We have seen that `Runnable` is a functional interface.
 It contains exactly one method `run` without arguments that does not return a result:
 
@@ -21,7 +21,7 @@ We used a lambda expression to create an instance of this interface in the stati
 SwingUtilities.invokeLater(() -> new TicTacToe().show());
 ```
 
-A more verbose way of writing this line would be to explicitly assign a variable containing the `Runnable` instance as follows.
+A more verbose way of writing this line would be to explicitly assign a variable containing the `Runnable` instance.
 
 ```java
 final Runnable showNewWindow = () -> new TicTacToe().show();
