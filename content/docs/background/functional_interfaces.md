@@ -52,10 +52,52 @@ SwingUtilities.invokeLater(showNewWindow);
 ```
 
 By using lambda expressions we let the compiler take care of this instance declaration.
-In this example we onle save five lines of code.
+In this example we only save five lines of code.
 But those lines add up.
 Programs containing lambda expressions can be significantly more concise than programs without them, as we will see in other examples.
 
-If you came here from the [Static Constructors] section, I recommend you go back there now and come back here when more examples are referenced from the tutorial.
+If you came here via the [static constructors] section, I recommend you go back there now and come back here later when more examples are referenced from the tutorial.
 
 [static constructors]: ../../static_methods/static_constructors
+
+## Consumers
+
+[function package]: https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html
+
+Consumers are defined in the [function package] that contains many pre-defined functional interfaces.
+Unlike the `run` method in `Runnable`, the `accept` method of `Consumers` takes an argument.
+
+```java
+interface Consumer<T> {
+  void accept(T t);
+}
+```
+
+[type parameters]: ../type_parameters
+
+Note that the `Consumer` interface has a type parameter for the argument type of `accept`.
+You can learn more about [type parameters] in another background section.
+
+[static helpers]: ../../static_methods/static_helpers
+
+Consumers can be passed as arguments to the `forEach` method of the `Iterable` interface as we have seen in the [static helpers] section:
+
+```java
+board.getFields().forEach(field -> {
+  FieldHelpers.addUnmarkedFieldComponent(field, panel);
+});
+```
+
+Here, the lambda expression has an argument.
+It is transformed into an anonymous class just like before:
+
+```java
+board.getFields().forEach(new Consumer<Field>() {
+  @Override
+  public void accept(final Field field) {
+    FieldHelpers.addUnmarkedFieldComponent(field, panel);
+  }
+});
+```
+
+If you came here via the [static helpers] section, I recommend you go back there now and come back here later when more examples are referenced from the tutorial.

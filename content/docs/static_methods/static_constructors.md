@@ -73,3 +73,7 @@ public static Board emptyBoard() {
 You can inspect the complete implementation of the static constructors in the [constructors package].
 
 [constructors package]: https://github.com/sebfisch/emf-adapter-tutorial-code/tree/step1-static-methods-v1/de.sebfisch.tictactoe/src/constructors
+
+In the [next section], we look at the `BoardHelpers` class that implements additional functionality on `Board` instances.
+
+[next section]: ../static_helpers
