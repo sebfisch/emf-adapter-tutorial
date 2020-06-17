@@ -55,8 +55,7 @@ If you came here via the [static helpers] section, I recommend you go back there
 [optional class]: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html
 
 Optional values can be either empty or present and the [Optional class] provides methods `isEmpty` and `isPresent` to test which of the two is the case.
-The method `orElseThrow` can be used to access the wrapped value.
-It throws an exception if it is called on an empty value.
+The method `orElse` can be used to access the wrapped value providing a default value which is returned in the empty case, and `orElseThrow` is similar but throws an exception if it is called on an empty value.
 The `Optional` class has a type parameter for the type of the nested value.
 For example, the following statements access a value of type `Optional<String>` to output the wrapped value if it is present.
 

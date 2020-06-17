@@ -103,7 +103,7 @@ board.getFields().forEach(new Consumer<Field>() {
 });
 ```
 
-## Functions
+## Functions and predicates
 
 Another frequently used functional interface from the [function package] is the `Function` interface.
 
@@ -114,9 +114,20 @@ interface Function<Arg,Res> {
 }
 ```
 
-Unline the `accept` method of consumers, the `apply` method of functions returns a result.
+Unlike the `accept` method of consumers, the `apply` method of functions returns a result.
 That's why the `Function` interface has two type parameters, one for the argument and one for the result.
 Instances of `Function` are supplied in calls to `map` and `flatMap` methods which can be used to transform optional or streamed values as we will see later.
+
+Yet another functional interface used frequently is the following one for predicates, that is, functions returning a boolean result.
+
+```java
+interface Predicate<T> {
+	boolean test(T t);
+	// omitting default methods
+}
+```
+
+We will use predicates for filtering [streams] later.
 
 If you came here via the [static helpers] section, I recommend you go back there now and come back here later when more examples are referenced from the tutorial.
 

@@ -20,8 +20,9 @@ If you want to follow along, check out the code for the second step from the git
 
 [game.adapters package]: https://github.com/sebfisch/emf-adapter-tutorial-code/tree/step2-plain-adapters-v1/de.sebfisch.tictactoe/src/game/adapters
 
-It contains a new [game.adapters package] with definitions discussed next. We will define adapters for `Board` and `Field` objects.
-Where appropriate, we will seperate user interface functionality and model access functionality by defining multiple adapters for the same model type.
+It contains a new [game.adapters package] with definitions replacing the classes in the `game.helpers` package of the previous version.
+We will define adapters for `Board` and `Field` objects.
+Where appropriate, we will separate user interface functionality and model access functionality by defining multiple adapters for the same model type.
 
 Before we inspect hand written adapter implementations, we look at the interface they implement.
 
@@ -42,6 +43,6 @@ The method `isAdapterForType` is used to check if an adapter can be applied to o
 Finally, the method `notifyChanged` is called whenever the registered target is changed.
 We can override it to update the user interface triggered by game-state changes regardless of where they originate.
 
-Let's start by looking at an adapter implementing the [user interface] for boards.
+Let's start by looking at an adapter implementing [model access] for fields.
 
-[user interface]: user_interface
+[model access]: model_access
