@@ -50,3 +50,41 @@ For processing, there are methods `anyMatch` and `allMatch` wich take a predicat
 [stream api]: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/stream/package-summary.html
 
 I encourage you to inspect the [Stream API] to find out more about stream programming in Java.
+
+[winning check]: ../../programming_tasks/winning_check
+
+Streams can be used to implement algorithms that would traditionally be implemented using loops and conditionals.
+As an example consider the following method of the `BoardAccess` class implementing a [winning check] for the game.
+
+```java
+public boolean isWinner(final Player player) {
+	return lines().anyMatch(line -> //
+		line.allMatch(fa -> //
+			fa.getMarkingPlayer().map(player::equals).orElse(false)));
+}
+```
+
+Here, the `lines` method returns a result of type `Stream<Stream<FieldAccess>>` representing a nested stream of field access adapters.
+The definition of `isWinner` captures the idea that a `player` has won the game if on any of the lines of three consecutive fields, they have marked all fields themselves.
+
+Here is an alternative implementation using loops and conditionals.
+
+```java
+public boolean isWinner(final Player player) {
+	final Iterable<Stream<FieldAccess>> iterLines = () -> lines().iterator();
+	for (final Stream<FieldAccess> line : iterLines) {
+		final Iterable<FieldAccess> iterFields = () -> line.iterator();
+		boolean allMarkedByPlayer = true;
+		for (final FieldAccess fa : iterFields) {
+			allMarkedByPlayer &=
+				fa.getMarkingPlayer().map(player::equals).orElse(false);
+		}
+		if (allMarkedByPlayer) {
+			return true;
+		}
+	}
+	return false;
+}
+```
+
+It is apparent that the original version makes good use of the Stream API to implement the winning check in a way that is both concise and easy to understand.
