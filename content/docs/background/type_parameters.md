@@ -49,3 +49,60 @@ Those guarantees help avoid programming errors which would result in compiler er
 If you came here via the [static helpers] section, I recommend you go back there now and come back here later when more examples are referenced from the tutorial.
 
 [static helpers]: ../../static_methods/static_helpers
+
+## Optional values
+
+[optional class]: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html
+
+Optional values can be either empty or present and the [Optional class] provides methods `isEmpty` and `isPresent` to test which of the two is the case.
+The method `orElseThrow` can be used to access the wrapped value.
+It throws an exception if it is called on an empty value.
+The `Optional` class has a type parameter for the type of the nested value.
+For example, the following statements access a value of type `Optional<String>` to output the wrapped value if it is present.
+
+```java
+if (optionalString.isPresent()) {
+	System.out.println(optionalString.orElseThrow());
+}
+```
+
+Howewer, those methods are often avoided in favor of other methods to transform or access optional values.
+We can rewrite the above statements using the method `ifPresent` which looks much cleaner:
+
+```java
+optionalString.ifPresent(System.out::println);
+```
+
+The method `ifPresent` takes a consumer as argument.
+The `accept` method of the consumer is called with the wrapped value if the optional value is present; otherwise `accept` is not called.
+In this example, we pass a [method reference].
+Method references (like lambda expressions) are converted to instances of functional interfaces automatically.
+
+[method reference]: ../functional_interfaces#method-references
+
+As another example, the following expression of type `Optional<Player>` computes the `Player` who marked a given `Field` without an explicit `null`- or `isEmpty`-check.
+
+```java
+Optional.ofNullable(field.getMark()).map(Mark::getPlayer)
+```
+
+We use the static constructor method `ofNullable` to create an optional value from the mark of a field that may be `null` in our game-state model.
+The result of `ofNullable` is empty if the argument is `null` and present otherwise.
+
+On the result, we call the `map` method which transforms the optional value using the given function if one is present.
+On empty values the `map` method returns an empty result and does not call the provided function.
+Again, we use a [method reference] as argument -- this time to access the player attribute of the optional mark.
+
+Another useful method on optional values is `flatMap`.
+The `flatMap` method combines the `map` operation with a subsequent flattening step.
+For example, we can pass the identity function to `flatMap` to flatten nested optional values.
+
+```java
+static Optional<T> flat(Optional<Optional<T>> nested) {
+	return nested.flatMap(optional -> optional);
+}
+```
+
+In this case we do not need the mapping functionality of `flatMap`.
+Usually, `flatMap` is used to apply multiple functions with optional results in a row.
+Chaining functions with optional results using `flatMap` helps avoid null-pointer exceptions compared to chaining methods that may return `null`.

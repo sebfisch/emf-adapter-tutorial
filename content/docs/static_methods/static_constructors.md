@@ -8,6 +8,7 @@ weight: 14
 Let's take a look at the main class used to start the game app.
 
 ```java
+// app.TicTacToe
 public class TicTacToe {
 
 	public static void main(final String[] args) {
@@ -49,6 +50,7 @@ By defining static contructor methods, we can hide the required initialization o
 For example, the `emptyWindow` method sets a default close operation on the created window:
 
 ```java
+// constructors.UiConstructors
 public static JFrame emptyWindow(final String title) {
   final JFrame frame = new JFrame(title);
   frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -60,6 +62,7 @@ public static JFrame emptyWindow(final String title) {
 Similarly, the `emptyBoard` method initializes the created board with the first player to move and the correct number of unmarked fields:
 
 ```java
+// constructors.GameConstructors
 public static Board emptyBoard() {
   final Board board = GameFactory.eINSTANCE.createBoard();
   board.setCurrentPlayer(Player.X);
