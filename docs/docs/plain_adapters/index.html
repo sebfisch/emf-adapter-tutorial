@@ -2,20 +2,19 @@
 <html lang="en" dir=>
 
 <head>
-	<meta name="generator" content="Hugo 0.71.0" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Using EMF adapters The Eclipse Modelling Framework (EMF) provides an Adapter Interface that can be implemented to observe model instances or extend their functionality. EMF provides mechanisms to generate adapters, for example for editing. Here, however, we will focus on writing adapters ourselves and associating them with model instances.
-First, we will look at an application that can be used to play Tic-Tac-Toe. The game state of this application is modeled using EMF and additional functionality is implemented in static methods.">
-<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Using EMF adapters" />
+<meta name="description" content="Step 2: Refactoring the app using EMF adapters An adapter can be wrapped around an object to change its interface. For example, if you travel abroad and the plug of your hair dryer does not fit into the socket next to the bathroom mirror, you can plug your hair dryer into a travel adapter that matches the foreign sockets.
+Similarly, EMF adapters can be wrapped around EMF model instances to implement methods not present on the original objects.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Plain Adapters" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="http://sebfisch.github.io/emf-adapter-tutorial/" />
+<meta property="og:url" content="http://sebfisch.github.io/emf-adapter-tutorial/docs/plain_adapters/" />
 
-<title>Using EMF adapters | EMF Adapter Tutorial</title>
+<title>Plain Adapters | EMF Adapter Tutorial</title>
 <link rel="manifest" href="/emf-adapter-tutorial/manifest.json">
 <link rel="icon" href="/emf-adapter-tutorial/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="/emf-adapter-tutorial/book.min.e161f1fe2b283b6a43c29a52fde96e2387fade573e78efa6701d44c8499da76b.css" integrity="sha256-4WHx/isoO2pDwppS/eluI4f63lc&#43;eO&#43;mcB1EyEmdp2s="><link rel="alternate" type="application/rss+xml" href="http://sebfisch.github.io/emf-adapter-tutorial/index.xml" title="EMF Adapter Tutorial" />
+<link rel="stylesheet" href="/emf-adapter-tutorial/book.min.e161f1fe2b283b6a43c29a52fde96e2387fade573e78efa6701d44c8499da76b.css" integrity="sha256-4WHx/isoO2pDwppS/eluI4f63lc&#43;eO&#43;mcB1EyEmdp2s="><link rel="alternate" type="application/rss+xml" href="http://sebfisch.github.io/emf-adapter-tutorial/docs/plain_adapters/index.xml" title="EMF Adapter Tutorial" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -113,7 +112,7 @@ https://github.com/alex-shpak/hugo-book
         <li>
           
   
-    <a href="/emf-adapter-tutorial/docs/plain_adapters/" class="">Plain Adapters</a>
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/" class="active">Plain Adapters</a>
   
 
           
@@ -340,7 +339,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/emf-adapter-tutorial/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Using EMF adapters</strong>
+  <strong>Plain Adapters</strong>
 
   <label for="toc-control">
     <img src="/emf-adapter-tutorial/svg/toc.svg" class="book-icon" alt="Table of Contents" />
@@ -362,28 +361,29 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="using-emf-adapters">Using EMF adapters</h1>
-<p>The <a href="https://www.eclipse.org/modeling/emf/">Eclipse Modelling Framework (EMF)</a> provides an <a href="https://download.eclipse.org/modeling/emf/emf/javadoc/2.11/org/eclipse/emf/common/notify/Adapter.html">Adapter Interface</a> that can be implemented to observe model instances or extend their functionality.
-EMF provides mechanisms to generate adapters, for example for editing.
-Here, however, we will focus on writing adapters ourselves and associating them with model instances.</p>
-<p>First, we will look at an application that can be used to play <a href="https://en.wikipedia.org/wiki/Tic-tac-toe">Tic-Tac-Toe</a>.
-The game state of this application is modeled using EMF and additional functionality is implemented in static methods.
-Then we will refactor the application to implement the same functionality using EMF adapters.
-We will observe opportunities to extract duplicated parts of the adapter implementations into a common base class.
-As the implementation uses <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">lambda expressions</a>, <a href="https://docs.oracle.com/javase/tutorial/java/generics/index.html">type parameters</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html">streams</a>, we will discuss those concepts along the way.</p>
-<p><img src="tic-tac-toe.png" alt="Player X won Tic-Tac-Toe playing in our application." /></p>
-<p>If, after following this tutorial, you want to practice using EMF adapters, there are programming tasks related to</p>
-<ul>
-<li>refactoring the adapters to use the base class for type safe adapters of EMF objects</li>
-<li>as well as extending their functionality further by adding a check of the winning condition</li>
-<li>and the ability to restart games.</li>
-</ul>
-<p>The source code discussed in this tutorial is available in a <a href="https://github.com/sebfisch/emf-adapter-tutorial-code">git repository</a> &ndash; including solutions to the programming tasks.
-Even if you don&rsquo;t have <a href="https://git-scm.com/">git</a> you can still look at the code online in the linked repository.
-You can also download different versions of the code as a zip files there.
-However, I recommend you use git if you want to write your own code solving the programming tasks.
-Using git allows you to easily switch between intermediate steps in the development without downloading seperate zip files for each step.</p>
-<p>Let&rsquo;s start by looking at the <a href="docs/static_methods">Tic-Tac-Toe app</a>.</p>
+  <article class="markdown"><h1 id="step-2-refactoring-the-app-using-emf-adapters">Step 2: Refactoring the app using EMF adapters</h1>
+<p>An adapter can be wrapped around an object to change its interface.
+For example, if you travel abroad and the plug of your hair dryer does not fit into the socket next to the bathroom mirror, you can plug your hair dryer into a travel adapter that matches the foreign sockets.</p>
+<p>Similarly, <a href="https://download.eclipse.org/modeling/emf/emf/javadoc/2.4.2/org/eclipse/emf/common/notify/Adapter.html">EMF adapters</a> can be wrapped around EMF model instances to implement methods not present on the original objects.</p>
+<p>If you want to follow along, check out the code for the second step from the git repository or download the corresponding <a href="https://github.com/sebfisch/emf-adapter-tutorial-code/archive/step2-plain-adapters-v1.zip">zip file</a>.</p>
+<pre><code>git checkout -b step2 step2-plain-adapters-v1
+</code></pre>
+<p>It contains a new <a href="https://github.com/sebfisch/emf-adapter-tutorial-code/tree/step2-plain-adapters-v1/de.sebfisch.tictactoe/src/game/adapters">game.adapters package</a> with definitions replacing the classes in the <code>game.helpers</code> package of the previous version.
+We will define adapters for <code>Board</code> and <code>Field</code> objects.
+Where appropriate, we will separate user interface functionality and model access functionality by defining multiple adapters for the same model type.</p>
+<p>Before we inspect hand written adapter implementations, we look at the interface they implement.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Adapter</span> <span style="color:#f92672">{</span>
+	Notifier <span style="color:#a6e22e">getTarget</span><span style="color:#f92672">();</span>
+	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setTarget</span><span style="color:#f92672">(</span>Notifier target<span style="color:#f92672">);</span>
+	<span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isAdapterForType</span><span style="color:#f92672">(</span>Object object<span style="color:#f92672">);</span>
+	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">notifyChanged</span><span style="color:#f92672">(</span>Notification notification<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>The first two methods provide access to the so called target of the adapter.
+In our case, the targets will be instances of the generated <code>Board</code> and <code>Field</code> types which implement the mentioned <code>Notifier</code> interface automatically.</p>
+<p>The method <code>isAdapterForType</code> is used to check if an adapter can be applied to objects of specific types. We will override it by testing if the given object is an instance of the correct class for the target.</p>
+<p>Finally, the method <code>notifyChanged</code> is called whenever the registered target is changed.
+We can override it to update the user interface triggered by game-state changes regardless of where they originate.</p>
+<p>Let&rsquo;s start by looking at an adapter implementing <a href="model_access">model access</a> for fields.</p>
 </article>
  
       

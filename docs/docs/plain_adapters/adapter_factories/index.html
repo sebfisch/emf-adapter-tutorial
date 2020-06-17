@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Creating and attaching adapters To wrap up the second step in the tutorial, we now discuss how adapter factories can be used to create adapters and associate them with model instances. We could just create adapter instances and add them to the list returned by the eAdapters method of model instances. This would lead to setTarget being called on the adapter to complete the association.
+Instead we will hide the creation of adapters in subclasses of the class GameAdapterFactory generated automatically with our model code.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Adapter Factories" />
+<meta property="og:description" content="Creating and attaching adapters To wrap up the second step in the tutorial, we now discuss how adapter factories can be used to create adapters and associate them with model instances. We could just create adapter instances and add them to the list returned by the eAdapters method of model instances. This would lead to setTarget being called on the adapter to complete the association.
+Instead we will hide the creation of adapters in subclasses of the class GameAdapterFactory generated automatically with our model code." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sebfisch.github.io/emf-adapter-tutorial/docs/plain_adapters/adapter_factories/" />
+<meta property="article:modified_time" content="2020-06-17T23:11:13+02:00" />
+<title>Adapter Factories | EMF Adapter Tutorial</title>
+<link rel="manifest" href="/emf-adapter-tutorial/manifest.json">
+<link rel="icon" href="/emf-adapter-tutorial/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/emf-adapter-tutorial/book.min.e161f1fe2b283b6a43c29a52fde96e2387fade573e78efa6701d44c8499da76b.css" integrity="sha256-4WHx/isoO2pDwppS/eluI4f63lc&#43;eO&#43;mcB1EyEmdp2s="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/emf-adapter-tutorial"><span>EMF Adapter Tutorial</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/" class="">Tic-Tac-Toe App</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/game_state_model/" class="">Game-State Model</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/static_constructors/" class="">Static Constructors</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/static_helpers/" class="">Static Helpers</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/" class="">Plain Adapters</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/model_access/" class="">Model Access</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/user_interface/" class="">User Interface</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/adapter_factories/" class="active">Adapter Factories</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/object_adapter/" class="">Object Adapter</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/" class="">Programming Tasks</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/typed_adapters/" class="">Typed Adapters</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/winning_check/" class="">Winning Check</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/escape_restart/" class="">Escape Restart</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/" class="">Background</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/functional_interfaces/" class="">Functional Interfaces</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/type_parameters/" class="">Type Parameters</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/stream_programming/" class="">Stream Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/resources/" class="">Resources</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+  </ul>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/emf-adapter-tutorial/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Adapter Factories</strong>
+
+  <label for="toc-control">
+    <img src="/emf-adapter-tutorial/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents"></nav>
+
+
+    </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="creating-and-attaching-adapters">Creating and attaching adapters</h1>
+<p>To wrap up the second step in the tutorial, we now discuss how adapter factories can be used to create adapters and associate them with model instances.
+We could just create adapter instances and add them to the list returned by the <code>eAdapters</code> method of model instances.
+This would lead to <code>setTarget</code> being called on the adapter to complete the association.</p>
+<p>Instead we will hide the creation of adapters in subclasses of the class <code>GameAdapterFactory</code> generated automatically with our model code.
+Here are two subclasses &ndash; one for access adapters and one for user interface adapters.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// game.adapter.access.AccessAdapterFactory
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AccessAdapterFactory</span> <span style="color:#66d9ef">extends</span> GameAdapterFactory <span style="color:#f92672">{</span>
+	<span style="color:#a6e22e">@Override</span>
+	<span style="color:#66d9ef">public</span> FieldAccess <span style="color:#a6e22e">createFieldAdapter</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> FieldAccess<span style="color:#f92672">();</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e">// game.adapter.ui.UiAdapterFactory
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UiAdapterFactory</span> <span style="color:#66d9ef">extends</span> GameAdapterFactory <span style="color:#f92672">{</span>
+	<span style="color:#a6e22e">@Override</span>
+	<span style="color:#66d9ef">public</span> BoardUi <span style="color:#a6e22e">createBoardAdapter</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> BoardUi<span style="color:#f92672">();</span>
+	<span style="color:#f92672">}</span>
+	<span style="color:#a6e22e">@Override</span>
+	<span style="color:#66d9ef">public</span> FieldUi <span style="color:#a6e22e">createFieldAdapter</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> FieldUi<span style="color:#f92672">();</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>We use these factories when initializing game-state model instances in the <a href="../../static_methods/static_constructors">static constructors</a> discussed in the first part of this tutorial.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// constructors.GameConstructors
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GameConstructors</span> <span style="color:#f92672">{</span>
+
+	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> FIELD_COUNT <span style="color:#f92672">=</span> 9<span style="color:#f92672">;</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> UiAdapterFactory UI <span style="color:#f92672">=</span>
+		<span style="color:#66d9ef">new</span> UiAdapterFactory<span style="color:#f92672">();</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> AccessAdapterFactory ACCESS <span style="color:#f92672">=</span>
+		<span style="color:#66d9ef">new</span> AccessAdapterFactory<span style="color:#f92672">();</span>
+
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Board <span style="color:#a6e22e">emptyBoard</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">final</span> Board board <span style="color:#f92672">=</span> GameFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">eINSTANCE</span><span style="color:#f92672">.</span><span style="color:#a6e22e">createBoard</span><span style="color:#f92672">();</span>
+		board<span style="color:#f92672">.</span><span style="color:#a6e22e">setCurrentPlayer</span><span style="color:#f92672">(</span>Player<span style="color:#f92672">.</span><span style="color:#a6e22e">X</span><span style="color:#f92672">);</span>
+		<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> index <span style="color:#f92672">&lt;</span> FIELD_COUNT<span style="color:#f92672">;</span> index<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+			board<span style="color:#f92672">.</span><span style="color:#a6e22e">getFields</span><span style="color:#f92672">().</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>emptyField<span style="color:#f92672">(</span>index<span style="color:#f92672">));</span>
+		<span style="color:#f92672">}</span>
+		UI<span style="color:#f92672">.</span><span style="color:#a6e22e">adaptAllNew</span><span style="color:#f92672">(</span>board<span style="color:#f92672">);</span>
+		<span style="color:#66d9ef">return</span> board<span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Field <span style="color:#a6e22e">emptyField</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> index<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">final</span> Field field <span style="color:#f92672">=</span> GameFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">eINSTANCE</span><span style="color:#f92672">.</span><span style="color:#a6e22e">createField</span><span style="color:#f92672">();</span>
+		field<span style="color:#f92672">.</span><span style="color:#a6e22e">setIndex</span><span style="color:#f92672">(</span>index<span style="color:#f92672">);</span>
+		field<span style="color:#f92672">.</span><span style="color:#a6e22e">setMark</span><span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
+		UI<span style="color:#f92672">.</span><span style="color:#a6e22e">adaptAllNew</span><span style="color:#f92672">(</span>field<span style="color:#f92672">);</span>
+		ACCESS<span style="color:#f92672">.</span><span style="color:#a6e22e">adaptAllNew</span><span style="color:#f92672">(</span>field<span style="color:#f92672">);</span>
+		<span style="color:#66d9ef">return</span> field<span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Mark <span style="color:#a6e22e">markFor</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> Player player<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">final</span> Mark mark <span style="color:#f92672">=</span> GameFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">eINSTANCE</span><span style="color:#f92672">.</span><span style="color:#a6e22e">createMark</span><span style="color:#f92672">();</span>
+		mark<span style="color:#f92672">.</span><span style="color:#a6e22e">setPlayer</span><span style="color:#f92672">(</span>player<span style="color:#f92672">);</span>
+		<span style="color:#66d9ef">return</span> mark<span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Compared to the previous version, the implementation is only extended with constants <code>ACCESS</code> and <code>UI</code> for the adapter factory instances and corresponding calls to their method <code>adaptAllNew</code>.
+This method takes a model instance, creates an appropriate adapter and associates the two.</p>
+<p>This concludes the second part of the tutorial.
+We now review similarities in the defined adapter instances and extract them into a common <a href="../../object_adapter">base class</a> to avoid repetition.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        &copy; 2020, Sebastian Fischer,
+<a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/"
+  >CC-BY-ND 4.0</a
+>
+
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents"></nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

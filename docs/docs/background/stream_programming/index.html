@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Programming with streams The Stream type is a parameterized type representing multiple elements. It provides methods to transform or filter contained elements which can be used to search elements with certain properties. The adapters we wrote have a static method from that can be used to search for adapters of their own type. Let&rsquo;s revisit one ofe them.
+public static FieldAccess from(final Field field) { return field.eAdapters().stream() // 	.filter(FieldAccess.class::isInstance) // 	.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Stream Programming" />
+<meta property="og:description" content="Programming with streams The Stream type is a parameterized type representing multiple elements. It provides methods to transform or filter contained elements which can be used to search elements with certain properties. The adapters we wrote have a static method from that can be used to search for adapters of their own type. Let&rsquo;s revisit one ofe them.
+public static FieldAccess from(final Field field) { return field.eAdapters().stream() // 	.filter(FieldAccess.class::isInstance) // 	." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sebfisch.github.io/emf-adapter-tutorial/docs/background/stream_programming/" />
+<meta property="article:modified_time" content="2020-06-18T00:38:41+02:00" />
+<title>Stream Programming | EMF Adapter Tutorial</title>
+<link rel="manifest" href="/emf-adapter-tutorial/manifest.json">
+<link rel="icon" href="/emf-adapter-tutorial/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/emf-adapter-tutorial/book.min.e161f1fe2b283b6a43c29a52fde96e2387fade573e78efa6701d44c8499da76b.css" integrity="sha256-4WHx/isoO2pDwppS/eluI4f63lc&#43;eO&#43;mcB1EyEmdp2s="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/emf-adapter-tutorial"><span>EMF Adapter Tutorial</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/" class="">Tic-Tac-Toe App</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/game_state_model/" class="">Game-State Model</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/static_constructors/" class="">Static Constructors</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/static_helpers/" class="">Static Helpers</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/" class="">Plain Adapters</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/model_access/" class="">Model Access</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/user_interface/" class="">User Interface</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/adapter_factories/" class="">Adapter Factories</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/object_adapter/" class="">Object Adapter</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/" class="">Programming Tasks</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/typed_adapters/" class="">Typed Adapters</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/winning_check/" class="">Winning Check</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/escape_restart/" class="">Escape Restart</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/" class="">Background</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/functional_interfaces/" class="">Functional Interfaces</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/type_parameters/" class="">Type Parameters</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/stream_programming/" class="active">Stream Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/resources/" class="">Resources</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+  </ul>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/emf-adapter-tutorial/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Stream Programming</strong>
+
+  <label for="toc-control">
+    <img src="/emf-adapter-tutorial/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents"></nav>
+
+
+    </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="programming-with-streams">Programming with streams</h1>
+<p>The <code>Stream</code> type is a <a href="../type_parameters">parameterized type</a> representing multiple elements.
+It provides methods to transform or filter contained elements which can be used to search elements with certain properties.
+The adapters we wrote have a static method <code>from</code> that can be used to search for adapters of their own type.
+Let&rsquo;s revisit one ofe them.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> FieldAccess <span style="color:#a6e22e">from</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> Field field<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">return</span> field<span style="color:#f92672">.</span><span style="color:#a6e22e">eAdapters</span><span style="color:#f92672">().</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">()</span> <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>			<span style="color:#f92672">.</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>FieldAccess<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">::</span>isInstance<span style="color:#f92672">)</span> <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>			<span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>FieldAccess<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">::</span>cast<span style="color:#f92672">)</span> <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>			<span style="color:#f92672">.</span><span style="color:#a6e22e">findFirst</span><span style="color:#f92672">().</span><span style="color:#a6e22e">orElseThrow</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Here, the <code>stream</code> method is used to create a <code>Stream&lt;Adapter&gt;</code> from the <code>List&lt;Adapter&gt;</code> returned by <code>eAdapters</code>.</p>
+<p>Then <code>filter</code> is applied to select only those adapters of type <code>FieldAccess</code>.
+In this case, we expect there to be exactly one such adapter, but in general the result of <code>filter</code> can represent many elements or none at all.
+The <code>filter</code> method takes a <a href="../functional_interfaces#functions-and-predicates">predicate</a> as argument which we supply using a <a href="../functional_interfaces#method-references">method reference</a>.</p>
+<p>Afterwards, <code>map</code> is called to transform the remaining (in this case presumably exactly one) element(s), casting them to the <code>FieldAccess</code> class.
+We have already seen a <code>map</code> method for <a href="../type_parameters#optional-values">optional values</a>.
+The one for streams is similar but transforms all represented elements using the given <a href="../functional_interfaces#functions-and-predicates">function</a>.</p>
+<p>Finally, <code>findFirst</code> processes the stream and returns an optional value representing the first (in this case presumably the only) element of the stream it is called on.
+The stream is only processed by <code>findFirst</code> until the first element is found.
+Subsequent elements are not tested by <code>filter</code> or transformed by <code>map</code>, although those methods are called before <code>findFirst</code>.</p>
+<p>The are other ways to create, transform or process streams.
+The static cosntructor <code>Stream.of</code> can be used to create a stream from given elements.
+Similar to optional values, streams provide a method <code>flatMap</code> that combines <code>map</code> with an additional step flattening nested streams.
+For processing, there are methods <code>anyMatch</code> and <code>allMatch</code> wich take a predicate as argument and return a boolean result indicating if any or all elements of the stream pass the given test.</p>
+<p>I encourage you to inspect the <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/stream/package-summary.html">Stream API</a> to find out more about stream programming in Java.</p>
+<p>Streams can be used to implement algorithms that would traditionally be implemented using loops and conditionals.
+As an example consider the following method of the <code>BoardAccess</code> class implementing a <a href="../../programming_tasks/winning_check">winning check</a> for the game.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isWinner</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> Player player<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">return</span> lines<span style="color:#f92672">().</span><span style="color:#a6e22e">anyMatch</span><span style="color:#f92672">(</span>line <span style="color:#f92672">-&gt;</span> <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>		line<span style="color:#f92672">.</span><span style="color:#a6e22e">allMatch</span><span style="color:#f92672">(</span>fa <span style="color:#f92672">-&gt;</span> <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>			fa<span style="color:#f92672">.</span><span style="color:#a6e22e">getMarkingPlayer</span><span style="color:#f92672">().</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>player<span style="color:#f92672">::</span>equals<span style="color:#f92672">).</span><span style="color:#a6e22e">orElse</span><span style="color:#f92672">(</span><span style="color:#66d9ef">false</span><span style="color:#f92672">)));</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Here, the <code>lines</code> method returns a result of type <code>Stream&lt;Stream&lt;FieldAccess&gt;&gt;</code> representing a nested stream of field access adapters.
+The definition of <code>isWinner</code> captures the idea that a <code>player</code> has won the game if on any of the lines of three consecutive fields, they have marked all fields themselves.</p>
+<p>Here is an alternative implementation using loops and conditionals.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isWinner</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> Player player<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">final</span> Iterable<span style="color:#f92672">&lt;</span>Stream<span style="color:#f92672">&lt;</span>FieldAccess<span style="color:#f92672">&gt;&gt;</span> iterLines <span style="color:#f92672">=</span> <span style="color:#f92672">()</span> <span style="color:#f92672">-&gt;</span> lines<span style="color:#f92672">().</span><span style="color:#a6e22e">iterator</span><span style="color:#f92672">();</span>
+	<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> Stream<span style="color:#f92672">&lt;</span>FieldAccess<span style="color:#f92672">&gt;</span> line <span style="color:#f92672">:</span> iterLines<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">final</span> Iterable<span style="color:#f92672">&lt;</span>FieldAccess<span style="color:#f92672">&gt;</span> iterFields <span style="color:#f92672">=</span> <span style="color:#f92672">()</span> <span style="color:#f92672">-&gt;</span> line<span style="color:#f92672">.</span><span style="color:#a6e22e">iterator</span><span style="color:#f92672">();</span>
+		<span style="color:#66d9ef">boolean</span> allMarkedByPlayer <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+		<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> FieldAccess fa <span style="color:#f92672">:</span> iterFields<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+			allMarkedByPlayer <span style="color:#f92672">&amp;=</span>
+				fa<span style="color:#f92672">.</span><span style="color:#a6e22e">getMarkingPlayer</span><span style="color:#f92672">().</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>player<span style="color:#f92672">::</span>equals<span style="color:#f92672">).</span><span style="color:#a6e22e">orElse</span><span style="color:#f92672">(</span><span style="color:#66d9ef">false</span><span style="color:#f92672">);</span>
+		<span style="color:#f92672">}</span>
+		<span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>allMarkedByPlayer<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+			<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+		<span style="color:#f92672">}</span>
+	<span style="color:#f92672">}</span>
+	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>It is apparent that the original version makes good use of the Stream API to implement the winning check in a way that is both concise and easy to understand.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        &copy; 2020, Sebastian Fischer,
+<a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/"
+  >CC-BY-ND 4.0</a
+>
+
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents"></nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

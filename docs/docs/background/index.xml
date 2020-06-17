@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Background on EMF Adapter Tutorial</title>
+    <link>http://sebfisch.github.io/emf-adapter-tutorial/docs/background/</link>
+    <description>Recent content in Background on EMF Adapter Tutorial</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://sebfisch.github.io/emf-adapter-tutorial/docs/background/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Functional Interfaces</title>
+      <link>http://sebfisch.github.io/emf-adapter-tutorial/docs/background/functional_interfaces/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/emf-adapter-tutorial/docs/background/functional_interfaces/</guid>
+      <description>Functional interfaces and lambda expressions Functional interfaces are interfaces with exactly one method (and possibly additional default methods.) We have seen that Runnable is a functional interface. It contains exactly one method run without arguments that does not return a result:
+interface Runnable { void run(); } We used a lambda expression to create an instance of this interface in the static main method of the TicTacToe class:
+SwingUtilities.invokeLater(() -&amp;gt; new TicTacToe().</description>
+    </item>
+    
+    <item>
+      <title>Type Parameters</title>
+      <link>http://sebfisch.github.io/emf-adapter-tutorial/docs/background/type_parameters/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/emf-adapter-tutorial/docs/background/type_parameters/</guid>
+      <description>Type safe generic programming We can use type parameters to implement functionality for different types without sacrificing type safety. Let&amp;rsquo;s revisit the functional interface Consumer.
+interface Consumer&amp;lt;T&amp;gt; { void accept(T t); } We saw it in the background section on consumers where we discussed the following application of the forEach method.
+board.getFields().forEach(field -&amp;gt; { FieldHelpers.addUnmarkedFieldComponent(field, panel); }); The accept method can take arguments of arbitrary (object-) types. The argument type is reflected in the type parameter T which is also mentioned with the name of the interface.</description>
+    </item>
+    
+    <item>
+      <title>Stream Programming</title>
+      <link>http://sebfisch.github.io/emf-adapter-tutorial/docs/background/stream_programming/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/emf-adapter-tutorial/docs/background/stream_programming/</guid>
+      <description>Programming with streams The Stream type is a parameterized type representing multiple elements. It provides methods to transform or filter contained elements which can be used to search elements with certain properties. The adapters we wrote have a static method from that can be used to search for adapters of their own type. Let&amp;rsquo;s revisit one ofe them.
+public static FieldAccess from(final Field field) { return field.eAdapters().stream() // 	.filter(FieldAccess.class::isInstance) // 	.</description>
+    </item>
+    
+  </channel>
+</rss>

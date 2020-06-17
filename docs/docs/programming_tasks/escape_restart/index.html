@@ -2,21 +2,22 @@
 <html lang="en" dir=>
 
 <head>
-	<meta name="generator" content="Hugo 0.71.0" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Using EMF adapters The Eclipse Modelling Framework (EMF) provides an Adapter Interface that can be implemented to observe model instances or extend their functionality. EMF provides mechanisms to generate adapters, for example for editing. Here, however, we will focus on writing adapters ourselves and associating them with model instances.
-First, we will look at an application that can be used to play Tic-Tac-Toe. The game state of this application is modeled using EMF and additional functionality is implemented in static methods.">
-<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Using EMF adapters" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://sebfisch.github.io/emf-adapter-tutorial/" />
-
-<title>Using EMF adapters | EMF Adapter Tutorial</title>
+<meta name="description" content="Step 6: Implementing restart functionality In order to work on this task, check out the code for the fifth step from the git repository or download the corresponding zip file.
+git checkout -b step5 step5-winning-check-v2  This step contains the solutions for the previous tasks.
+To avoid having to reopen the app after every game, it would be useful to be able to restart games. Implement the possibility to restart games by pressing the escape key.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Escape Restart" />
+<meta property="og:description" content="Step 6: Implementing restart functionality In order to work on this task, check out the code for the fifth step from the git repository or download the corresponding zip file.
+git checkout -b step5 step5-winning-check-v2  This step contains the solutions for the previous tasks.
+To avoid having to reopen the app after every game, it would be useful to be able to restart games. Implement the possibility to restart games by pressing the escape key." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sebfisch.github.io/emf-adapter-tutorial/docs/programming_tasks/escape_restart/" />
+<meta property="article:modified_time" content="2020-06-18T00:07:40+02:00" />
+<title>Escape Restart | EMF Adapter Tutorial</title>
 <link rel="manifest" href="/emf-adapter-tutorial/manifest.json">
 <link rel="icon" href="/emf-adapter-tutorial/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="/emf-adapter-tutorial/book.min.e161f1fe2b283b6a43c29a52fde96e2387fade573e78efa6701d44c8499da76b.css" integrity="sha256-4WHx/isoO2pDwppS/eluI4f63lc&#43;eO&#43;mcB1EyEmdp2s="><link rel="alternate" type="application/rss+xml" href="http://sebfisch.github.io/emf-adapter-tutorial/index.xml" title="EMF Adapter Tutorial" />
-<!--
+<link rel="stylesheet" href="/emf-adapter-tutorial/book.min.e161f1fe2b283b6a43c29a52fde96e2387fade573e78efa6701d44c8499da76b.css" integrity="sha256-4WHx/isoO2pDwppS/eluI4f63lc&#43;eO&#43;mcB1EyEmdp2s="><!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
 -->
@@ -220,7 +221,7 @@ https://github.com/alex-shpak/hugo-book
         <li>
           
   
-    <a href="/emf-adapter-tutorial/docs/programming_tasks/escape_restart/" class="">Escape Restart</a>
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/escape_restart/" class="active">Escape Restart</a>
   
 
         </li>
@@ -340,7 +341,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/emf-adapter-tutorial/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Using EMF adapters</strong>
+  <strong>Escape Restart</strong>
 
   <label for="toc-control">
     <img src="/emf-adapter-tutorial/svg/toc.svg" class="book-icon" alt="Table of Contents" />
@@ -362,28 +363,19 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="using-emf-adapters">Using EMF adapters</h1>
-<p>The <a href="https://www.eclipse.org/modeling/emf/">Eclipse Modelling Framework (EMF)</a> provides an <a href="https://download.eclipse.org/modeling/emf/emf/javadoc/2.11/org/eclipse/emf/common/notify/Adapter.html">Adapter Interface</a> that can be implemented to observe model instances or extend their functionality.
-EMF provides mechanisms to generate adapters, for example for editing.
-Here, however, we will focus on writing adapters ourselves and associating them with model instances.</p>
-<p>First, we will look at an application that can be used to play <a href="https://en.wikipedia.org/wiki/Tic-tac-toe">Tic-Tac-Toe</a>.
-The game state of this application is modeled using EMF and additional functionality is implemented in static methods.
-Then we will refactor the application to implement the same functionality using EMF adapters.
-We will observe opportunities to extract duplicated parts of the adapter implementations into a common base class.
-As the implementation uses <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">lambda expressions</a>, <a href="https://docs.oracle.com/javase/tutorial/java/generics/index.html">type parameters</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html">streams</a>, we will discuss those concepts along the way.</p>
-<p><img src="tic-tac-toe.png" alt="Player X won Tic-Tac-Toe playing in our application." /></p>
-<p>If, after following this tutorial, you want to practice using EMF adapters, there are programming tasks related to</p>
+  <article class="markdown"><h1 id="step-6-implementing-restart-functionality">Step 6: Implementing restart functionality</h1>
+<p>In order to work on this task, check out the code for the fifth step from the git repository or download the corresponding <a href="https://github.com/sebfisch/emf-adapter-tutorial-code/archive/step5-winning-check-v2.zip">zip file</a>.</p>
+<pre><code>git checkout -b step5 step5-winning-check-v2
+</code></pre>
+<p>This step contains the solutions for the previous tasks.</p>
+<p>To avoid having to reopen the app after every game, it would be useful to be able to restart games.
+Implement the possibility to restart games by pressing the escape key.</p>
 <ul>
-<li>refactoring the adapters to use the base class for type safe adapters of EMF objects</li>
-<li>as well as extending their functionality further by adding a check of the winning condition</li>
-<li>and the ability to restart games.</li>
+<li>Refactor the <code>BoardUi</code> adapter to implement the <code>KeyListener</code> interface.</li>
+<li>Override an appropriate <code>KeyListener</code> method to restart the game when the escape key is pressed.</li>
+<li>Make sure to add the <code>BoardUi</code> adapter to every user interface component created by the app.</li>
 </ul>
-<p>The source code discussed in this tutorial is available in a <a href="https://github.com/sebfisch/emf-adapter-tutorial-code">git repository</a> &ndash; including solutions to the programming tasks.
-Even if you don&rsquo;t have <a href="https://git-scm.com/">git</a> you can still look at the code online in the linked repository.
-You can also download different versions of the code as a zip files there.
-However, I recommend you use git if you want to write your own code solving the programming tasks.
-Using git allows you to easily switch between intermediate steps in the development without downloading seperate zip files for each step.</p>
-<p>Let&rsquo;s start by looking at the <a href="docs/static_methods">Tic-Tac-Toe app</a>.</p>
+<p>Compare your code to my <a href="https://github.com/sebfisch/emf-adapter-tutorial-code/commit/1de6836eff96549d2dc07a7d3db15e395f2388c0">solution</a> of this final step.</p>
 </article>
  
       

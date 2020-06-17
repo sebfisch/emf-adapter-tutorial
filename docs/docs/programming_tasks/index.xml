@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programming Tasks on EMF Adapter Tutorial</title>
+    <link>http://sebfisch.github.io/emf-adapter-tutorial/docs/programming_tasks/</link>
+    <description>Recent content in Programming Tasks on EMF Adapter Tutorial</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://sebfisch.github.io/emf-adapter-tutorial/docs/programming_tasks/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Typed Adapters</title>
+      <link>http://sebfisch.github.io/emf-adapter-tutorial/docs/programming_tasks/typed_adapters/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/emf-adapter-tutorial/docs/programming_tasks/typed_adapters/</guid>
+      <description>Step 4: Refactoring the adapters In order to work on this task, check out the code for the third step from the git repository or download the corresponding zip file.
+git checkout -b step3 step3-object-adapter-v1  This step contains the base class ObjectAdapter discussed previously.
+Refactor the classes FieldAccess, FieldUi and BoardUi to extend the ObjectAdapter class instead of implementing the Adapter interface directly.
+ Adjust the constructors of all adapters to call the superclass constructor with the correct class.</description>
+    </item>
+    
+    <item>
+      <title>Winning Check</title>
+      <link>http://sebfisch.github.io/emf-adapter-tutorial/docs/programming_tasks/winning_check/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/emf-adapter-tutorial/docs/programming_tasks/winning_check/</guid>
+      <description>Step 5: Implementing the winning condition In order to work on this task, check out the code for the fourth step from the git repository or download the corresponding zip file.
+git checkout -b step4 step4-typed-adapters-v1  This step contains the solution for the previous task.
+If you looked closely, you might have noticed that the animation of the app shown in the beginning was different from the version implemented so far.</description>
+    </item>
+    
+    <item>
+      <title>Escape Restart</title>
+      <link>http://sebfisch.github.io/emf-adapter-tutorial/docs/programming_tasks/escape_restart/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/emf-adapter-tutorial/docs/programming_tasks/escape_restart/</guid>
+      <description>Step 6: Implementing restart functionality In order to work on this task, check out the code for the fifth step from the git repository or download the corresponding zip file.
+git checkout -b step5 step5-winning-check-v2  This step contains the solutions for the previous tasks.
+To avoid having to reopen the app after every game, it would be useful to be able to restart games. Implement the possibility to restart games by pressing the escape key.</description>
+    </item>
+    
+  </channel>
+</rss>

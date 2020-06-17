@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Access adapters When reviewing the FieldHelpers class we observed that it contains methods related to user interface components as well as methods related to querying and modifying game-model data. For access to the game model we will implement adapters in the game.adapters.access package. For now, it only contains an adapter for Field instances because the app did not have any board helpers unrelated to user interfaces.
+We implement the field access adapter in a class FieldAccess that wraps a Field instance.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Model Access" />
+<meta property="og:description" content="Access adapters When reviewing the FieldHelpers class we observed that it contains methods related to user interface components as well as methods related to querying and modifying game-model data. For access to the game model we will implement adapters in the game.adapters.access package. For now, it only contains an adapter for Field instances because the app did not have any board helpers unrelated to user interfaces.
+We implement the field access adapter in a class FieldAccess that wraps a Field instance." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sebfisch.github.io/emf-adapter-tutorial/docs/plain_adapters/model_access/" />
+<meta property="article:modified_time" content="2020-06-17T23:11:13+02:00" />
+<title>Model Access | EMF Adapter Tutorial</title>
+<link rel="manifest" href="/emf-adapter-tutorial/manifest.json">
+<link rel="icon" href="/emf-adapter-tutorial/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/emf-adapter-tutorial/book.min.e161f1fe2b283b6a43c29a52fde96e2387fade573e78efa6701d44c8499da76b.css" integrity="sha256-4WHx/isoO2pDwppS/eluI4f63lc&#43;eO&#43;mcB1EyEmdp2s="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/emf-adapter-tutorial"><span>EMF Adapter Tutorial</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/" class="">Tic-Tac-Toe App</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/game_state_model/" class="">Game-State Model</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/static_constructors/" class="">Static Constructors</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/static_helpers/" class="">Static Helpers</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/" class="">Plain Adapters</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/model_access/" class="active">Model Access</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/user_interface/" class="">User Interface</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/adapter_factories/" class="">Adapter Factories</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/object_adapter/" class="">Object Adapter</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/" class="">Programming Tasks</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/typed_adapters/" class="">Typed Adapters</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/winning_check/" class="">Winning Check</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/escape_restart/" class="">Escape Restart</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/" class="">Background</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/functional_interfaces/" class="">Functional Interfaces</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/type_parameters/" class="">Type Parameters</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/stream_programming/" class="">Stream Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/resources/" class="">Resources</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+  </ul>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/emf-adapter-tutorial/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Model Access</strong>
+
+  <label for="toc-control">
+    <img src="/emf-adapter-tutorial/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents"></nav>
+
+
+    </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="access-adapters">Access adapters</h1>
+<p>When reviewing the <code>FieldHelpers</code> class we observed that it contains methods related to user interface components as well as methods related to querying and modifying game-model data.
+For access to the game model we will implement adapters in the <a href="https://github.com/sebfisch/emf-adapter-tutorial-code/tree/step2-plain-adapters-v1/de.sebfisch.tictactoe/src/game/adapters/access">game.adapters.access package</a>.
+For now, it only contains an adapter for <code>Field</code> instances because the app did not have any board helpers unrelated to user interfaces.</p>
+<p>We implement the field access adapter in a class <code>FieldAccess</code> that wraps a <code>Field</code> instance.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// game.adapters.access.FieldAccess
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FieldAccess</span> <span style="color:#66d9ef">implements</span> Adapter <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">private</span> Field field<span style="color:#f92672">;</span>
+
+	FieldAccess<span style="color:#f92672">()</span> <span style="color:#f92672">{}</span>
+
+	<span style="color:#a6e22e">@Override</span>
+	<span style="color:#66d9ef">public</span> Field <span style="color:#a6e22e">getTarget</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span> field<span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+
+	<span style="color:#a6e22e">@Override</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setTarget</span><span style="color:#f92672">(</span>Notifier target<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>target <span style="color:#66d9ef">instanceof</span> Field<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+			field <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Field<span style="color:#f92672">)</span> target<span style="color:#f92672">;</span>
+		<span style="color:#f92672">}</span>
+	<span style="color:#f92672">}</span>
+
+	<span style="color:#75715e">// additional methods follow
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><p>The constructor is package private because creating adapters will be handled by <a href="../adapter_factories">adapter factories</a> later.
+The target is not passed to the construtor but will be set by <code>setTarget</code>.
+Note that we override the <code>getTarget</code> method with a more specific return type to increase type safety when accessing the target of the adapter.
+The definitions of the other two <code>Adapter</code> methods are omitted.
+We override <code>isAdapterForType</code> using the same <code>instanceof</code> check used by <code>setTarget</code>.
+The <code>notifyChanged</code> method is overriden with an empty implementation.</p>
+<p>Let&rsquo;s get to the interesting parts actually implementing the required field access.
+The static methods <code>makeMove</code> and <code>getMarkingPlayer</code> are turned into instance methods.
+Their implementation is unchanged but instead of taking a <code>field</code> instance as argument, they delegate calls to the wrapped <code>field</code> instance.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// game.adapters.access.FieldAccess
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">makeMove</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">final</span> Board board <span style="color:#f92672">=</span> field<span style="color:#f92672">.</span><span style="color:#a6e22e">getBoard</span><span style="color:#f92672">();</span>
+	<span style="color:#66d9ef">final</span> Player player <span style="color:#f92672">=</span> board<span style="color:#f92672">.</span><span style="color:#a6e22e">getCurrentPlayer</span><span style="color:#f92672">();</span>
+	field<span style="color:#f92672">.</span><span style="color:#a6e22e">setMark</span><span style="color:#f92672">(</span>GameConstructors<span style="color:#f92672">.</span><span style="color:#a6e22e">markFor</span><span style="color:#f92672">(</span>player<span style="color:#f92672">));</span>
+	board<span style="color:#f92672">.</span><span style="color:#a6e22e">setCurrentPlayer</span><span style="color:#f92672">(</span>Player<span style="color:#f92672">.</span><span style="color:#a6e22e">X</span><span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>player<span style="color:#f92672">)</span> <span style="color:#f92672">?</span> Player<span style="color:#f92672">.</span><span style="color:#a6e22e">O</span> <span style="color:#f92672">:</span> Player<span style="color:#f92672">.</span><span style="color:#a6e22e">X</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">public</span> Optional<span style="color:#f92672">&lt;</span>Player<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getMarkingPlayer</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">return</span> Optional<span style="color:#f92672">.</span><span style="color:#a6e22e">ofNullable</span><span style="color:#f92672">(</span>field<span style="color:#f92672">.</span><span style="color:#a6e22e">getMark</span><span style="color:#f92672">()).</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Mark<span style="color:#f92672">::</span>getPlayer<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>EMF adapters are associated with their targets which provide a method <code>eAdapters</code> to access a list of all associated adapters.
+To query a <code>FieldAccess</code> adapter from the list of adapters associated with a <code>Field</code> instance, we define a static method <code>from</code> in the adapter class.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// game.adapters.access.FieldAccess
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> FieldAccess <span style="color:#a6e22e">from</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> Field field<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">return</span> field<span style="color:#f92672">.</span><span style="color:#a6e22e">eAdapters</span><span style="color:#f92672">().</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">()</span> <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>			<span style="color:#f92672">.</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>FieldAccess<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">::</span>isInstance<span style="color:#f92672">)</span> <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>			<span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>FieldAccess<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">::</span>cast<span style="color:#f92672">)</span> <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>			<span style="color:#f92672">.</span><span style="color:#a6e22e">findFirst</span><span style="color:#f92672">().</span><span style="color:#a6e22e">orElseThrow</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>The method uses <a href="../../background/stream_programming">stream programming</a> to find an adapter of the correct type.
+It throws an exception if none is found.
+We expect to only call this method if we know a matching adapter is associated with the <code>field</code>, so it should be an error to call this method with fields that do not have one.</p>
+<p>This completes the implementation of our first hand written adapter. Next we discuss adapters managing the <a href="../user_interface">user interface</a> of our game-state types.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        &copy; 2020, Sebastian Fischer,
+<a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/"
+  >CC-BY-ND 4.0</a
+>
+
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents"></nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

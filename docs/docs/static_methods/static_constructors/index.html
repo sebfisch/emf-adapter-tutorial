@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Static methods constructing required instances Let&rsquo;s take a look at the main class used to start the game app.
+// app.TicTacToe public class TicTacToe { public static void main(final String[] args) { SwingUtilities.invokeLater(() -&gt; new TicTacToe().show()); } private static final String WINDOW_TITLE = &#34;Tic Tac Toe&#34;; private final Board board; private final JFrame window; public TicTacToe() { board = GameConstructors.emptyBoard(); window = UiConstructors.emptyWindow(WINDOW_TITLE); window.getContentPane().add(BoardHelpers.getComponent(board)); } public void show() { window.pack(); window.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Static Constructors" />
+<meta property="og:description" content="Static methods constructing required instances Let&rsquo;s take a look at the main class used to start the game app.
+// app.TicTacToe public class TicTacToe { public static void main(final String[] args) { SwingUtilities.invokeLater(() -&gt; new TicTacToe().show()); } private static final String WINDOW_TITLE = &#34;Tic Tac Toe&#34;; private final Board board; private final JFrame window; public TicTacToe() { board = GameConstructors.emptyBoard(); window = UiConstructors.emptyWindow(WINDOW_TITLE); window.getContentPane().add(BoardHelpers.getComponent(board)); } public void show() { window.pack(); window." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sebfisch.github.io/emf-adapter-tutorial/docs/static_methods/static_constructors/" />
+<meta property="article:modified_time" content="2020-06-17T11:34:27+02:00" />
+<title>Static Constructors | EMF Adapter Tutorial</title>
+<link rel="manifest" href="/emf-adapter-tutorial/manifest.json">
+<link rel="icon" href="/emf-adapter-tutorial/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/emf-adapter-tutorial/book.min.e161f1fe2b283b6a43c29a52fde96e2387fade573e78efa6701d44c8499da76b.css" integrity="sha256-4WHx/isoO2pDwppS/eluI4f63lc&#43;eO&#43;mcB1EyEmdp2s="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/emf-adapter-tutorial"><span>EMF Adapter Tutorial</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/" class="">Tic-Tac-Toe App</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/game_state_model/" class="">Game-State Model</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/static_constructors/" class="active">Static Constructors</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/static_helpers/" class="">Static Helpers</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/" class="">Plain Adapters</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/model_access/" class="">Model Access</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/user_interface/" class="">User Interface</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/adapter_factories/" class="">Adapter Factories</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/object_adapter/" class="">Object Adapter</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/" class="">Programming Tasks</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/typed_adapters/" class="">Typed Adapters</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/winning_check/" class="">Winning Check</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/escape_restart/" class="">Escape Restart</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/" class="">Background</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/functional_interfaces/" class="">Functional Interfaces</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/type_parameters/" class="">Type Parameters</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/stream_programming/" class="">Stream Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/resources/" class="">Resources</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+  </ul>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/emf-adapter-tutorial/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Static Constructors</strong>
+
+  <label for="toc-control">
+    <img src="/emf-adapter-tutorial/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents"></nav>
+
+
+    </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="static-methods-constructing-required-instances">Static methods constructing required instances</h1>
+<p>Let&rsquo;s take a look at the main class used to start the game app.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// app.TicTacToe
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TicTacToe</span> <span style="color:#f92672">{</span>
+
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		SwingUtilities<span style="color:#f92672">.</span><span style="color:#a6e22e">invokeLater</span><span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">new</span> TicTacToe<span style="color:#f92672">().</span><span style="color:#a6e22e">show</span><span style="color:#f92672">());</span>
+	<span style="color:#f92672">}</span>
+
+	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> String WINDOW_TITLE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Tic Tac Toe&#34;</span><span style="color:#f92672">;</span>
+
+	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Board board<span style="color:#f92672">;</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> JFrame window<span style="color:#f92672">;</span>
+
+	<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">TicTacToe</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		board <span style="color:#f92672">=</span> GameConstructors<span style="color:#f92672">.</span><span style="color:#a6e22e">emptyBoard</span><span style="color:#f92672">();</span>
+		window <span style="color:#f92672">=</span> UiConstructors<span style="color:#f92672">.</span><span style="color:#a6e22e">emptyWindow</span><span style="color:#f92672">(</span>WINDOW_TITLE<span style="color:#f92672">);</span>
+		window<span style="color:#f92672">.</span><span style="color:#a6e22e">getContentPane</span><span style="color:#f92672">().</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>BoardHelpers<span style="color:#f92672">.</span><span style="color:#a6e22e">getComponent</span><span style="color:#f92672">(</span>board<span style="color:#f92672">));</span>
+	<span style="color:#f92672">}</span>
+
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">show</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		window<span style="color:#f92672">.</span><span style="color:#a6e22e">pack</span><span style="color:#f92672">();</span>
+		window<span style="color:#f92672">.</span><span style="color:#a6e22e">setVisible</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>The <code>main</code> method opens a window by creating an instance of the <code>TicTacToe</code> class and calling its <code>show</code> method on the user interface thread.
+The lambda expression passed to <code>invokeLater</code> is converted into an instance of the functional interface <code>Runnable</code> automatically.
+You can read about <a href="../../background/functional_interfaces">Functional Interfaces</a> in the background section, if you are not familiar with functional interfaces or lambda expressions.</p>
+<p>Our application does not yet use any EMF adapters.
+The constructor of the <code>TicTacToe</code> class uses static methods of different classes to create required instances.</p>
+<ul>
+<li>The class <code>UiConstructors</code> is used to create user interface components that are configured in the way we need for our app.</li>
+<li>The class <code>GameConstructors</code> is used to create instances of types in our game-state model</li>
+<li>The class <code>BoardHelpers</code> defines additional functionality on <code>Board</code> model instances.</li>
+</ul>
+<p>By defining static contructor methods, we can hide the required initialization of created instances.
+For example, the <code>emptyWindow</code> method sets a default close operation on the created window:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// constructors.UiConstructors
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> JFrame <span style="color:#a6e22e">emptyWindow</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> String title<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">final</span> JFrame frame <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> JFrame<span style="color:#f92672">(</span>title<span style="color:#f92672">);</span>
+  frame<span style="color:#f92672">.</span><span style="color:#a6e22e">setDefaultCloseOperation</span><span style="color:#f92672">(</span>WindowConstants<span style="color:#f92672">.</span><span style="color:#a6e22e">EXIT_ON_CLOSE</span><span style="color:#f92672">);</span>
+  frame<span style="color:#f92672">.</span><span style="color:#a6e22e">setResizable</span><span style="color:#f92672">(</span><span style="color:#66d9ef">false</span><span style="color:#f92672">);</span>
+  <span style="color:#66d9ef">return</span> frame<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Similarly, the <code>emptyBoard</code> method initializes the created board with the first player to move and the correct number of unmarked fields:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// constructors.GameConstructors
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Board <span style="color:#a6e22e">emptyBoard</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">final</span> Board board <span style="color:#f92672">=</span> GameFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">eINSTANCE</span><span style="color:#f92672">.</span><span style="color:#a6e22e">createBoard</span><span style="color:#f92672">();</span>
+  board<span style="color:#f92672">.</span><span style="color:#a6e22e">setCurrentPlayer</span><span style="color:#f92672">(</span>Player<span style="color:#f92672">.</span><span style="color:#a6e22e">X</span><span style="color:#f92672">);</span>
+  <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> index <span style="color:#f92672">&lt;</span> FIELD_COUNT<span style="color:#f92672">;</span> index<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+    board<span style="color:#f92672">.</span><span style="color:#a6e22e">getFields</span><span style="color:#f92672">().</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>emptyField<span style="color:#f92672">(</span>index<span style="color:#f92672">));</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">return</span> board<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>You can inspect the complete implementation of the static constructors in the <a href="https://github.com/sebfisch/emf-adapter-tutorial-code/tree/step1-static-methods-v1/de.sebfisch.tictactoe/src/constructors">constructors package</a>.</p>
+<p>In the <a href="../static_helpers">next section</a>, we look at the <code>BoardHelpers</code> class that implements additional functionality on <code>Board</code> instances.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        &copy; 2020, Sebastian Fischer,
+<a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/"
+  >CC-BY-ND 4.0</a
+>
+
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents"></nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

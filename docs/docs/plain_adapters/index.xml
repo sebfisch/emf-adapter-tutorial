@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Plain Adapters on EMF Adapter Tutorial</title>
+    <link>http://sebfisch.github.io/emf-adapter-tutorial/docs/plain_adapters/</link>
+    <description>Recent content in Plain Adapters on EMF Adapter Tutorial</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://sebfisch.github.io/emf-adapter-tutorial/docs/plain_adapters/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Model Access</title>
+      <link>http://sebfisch.github.io/emf-adapter-tutorial/docs/plain_adapters/model_access/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/emf-adapter-tutorial/docs/plain_adapters/model_access/</guid>
+      <description>Access adapters When reviewing the FieldHelpers class we observed that it contains methods related to user interface components as well as methods related to querying and modifying game-model data. For access to the game model we will implement adapters in the game.adapters.access package. For now, it only contains an adapter for Field instances because the app did not have any board helpers unrelated to user interfaces.
+We implement the field access adapter in a class FieldAccess that wraps a Field instance.</description>
+    </item>
+    
+    <item>
+      <title>User Interface</title>
+      <link>http://sebfisch.github.io/emf-adapter-tutorial/docs/plain_adapters/user_interface/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/emf-adapter-tutorial/docs/plain_adapters/user_interface/</guid>
+      <description>User interface adapters We now turn the static helper methods for boards and fields that have been used to manage corresponding user interface components into adapters in the game.adapters.ui package.
+Field UI Apart from the wrapped Field instance the FieldUi adapter stores a button that can be clicked to mark the represented field.
+// game.adapters.ui.FieldUi public class FieldUi implements Adapter { private static final int LABEL_SIZE = 90; private static final Dimension FIELD_DIMENSIONS = new Dimension(100, 100); private Field field; private final JButton button; FieldUi() { button = new JButton(&amp;#34;&amp;#34;); button.</description>
+    </item>
+    
+    <item>
+      <title>Adapter Factories</title>
+      <link>http://sebfisch.github.io/emf-adapter-tutorial/docs/plain_adapters/adapter_factories/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/emf-adapter-tutorial/docs/plain_adapters/adapter_factories/</guid>
+      <description>Creating and attaching adapters To wrap up the second step in the tutorial, we now discuss how adapter factories can be used to create adapters and associate them with model instances. We could just create adapter instances and add them to the list returned by the eAdapters method of model instances. This would lead to setTarget being called on the adapter to complete the association.
+Instead we will hide the creation of adapters in subclasses of the class GameAdapterFactory generated automatically with our model code.</description>
+    </item>
+    
+  </channel>
+</rss>

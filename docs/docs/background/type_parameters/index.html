@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Type safe generic programming We can use type parameters to implement functionality for different types without sacrificing type safety. Let&rsquo;s revisit the functional interface Consumer.
+interface Consumer&lt;T&gt; { void accept(T t); } We saw it in the background section on consumers where we discussed the following application of the forEach method.
+board.getFields().forEach(field -&gt; { FieldHelpers.addUnmarkedFieldComponent(field, panel); }); The accept method can take arguments of arbitrary (object-) types. The argument type is reflected in the type parameter T which is also mentioned with the name of the interface.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Type Parameters" />
+<meta property="og:description" content="Type safe generic programming We can use type parameters to implement functionality for different types without sacrificing type safety. Let&rsquo;s revisit the functional interface Consumer.
+interface Consumer&lt;T&gt; { void accept(T t); } We saw it in the background section on consumers where we discussed the following application of the forEach method.
+board.getFields().forEach(field -&gt; { FieldHelpers.addUnmarkedFieldComponent(field, panel); }); The accept method can take arguments of arbitrary (object-) types. The argument type is reflected in the type parameter T which is also mentioned with the name of the interface." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sebfisch.github.io/emf-adapter-tutorial/docs/background/type_parameters/" />
+<meta property="article:modified_time" content="2020-06-17T23:11:13+02:00" />
+<title>Type Parameters | EMF Adapter Tutorial</title>
+<link rel="manifest" href="/emf-adapter-tutorial/manifest.json">
+<link rel="icon" href="/emf-adapter-tutorial/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/emf-adapter-tutorial/book.min.e161f1fe2b283b6a43c29a52fde96e2387fade573e78efa6701d44c8499da76b.css" integrity="sha256-4WHx/isoO2pDwppS/eluI4f63lc&#43;eO&#43;mcB1EyEmdp2s="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/emf-adapter-tutorial"><span>EMF Adapter Tutorial</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/" class="">Tic-Tac-Toe App</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/game_state_model/" class="">Game-State Model</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/static_constructors/" class="">Static Constructors</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/static_helpers/" class="">Static Helpers</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/" class="">Plain Adapters</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/model_access/" class="">Model Access</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/user_interface/" class="">User Interface</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/adapter_factories/" class="">Adapter Factories</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/object_adapter/" class="">Object Adapter</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/" class="">Programming Tasks</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/typed_adapters/" class="">Typed Adapters</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/winning_check/" class="">Winning Check</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/escape_restart/" class="">Escape Restart</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/" class="">Background</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/functional_interfaces/" class="">Functional Interfaces</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/type_parameters/" class="active">Type Parameters</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/stream_programming/" class="">Stream Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/resources/" class="">Resources</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+  </ul>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/emf-adapter-tutorial/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Type Parameters</strong>
+
+  <label for="toc-control">
+    <img src="/emf-adapter-tutorial/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#optional-values">Optional values</a></li>
+  </ul>
+</nav>
+
+
+    </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="type-safe-generic-programming">Type safe generic programming</h1>
+<p>We can use type parameters to implement functionality for different types without sacrificing type safety.
+Let&rsquo;s revisit the functional interface <code>Consumer</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Consumer</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">accept</span><span style="color:#f92672">(</span>T t<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>We saw it in the background section on <a href="../functional_interfaces#consumers">consumers</a> where we discussed the following application of the <code>forEach</code> method.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">board<span style="color:#f92672">.</span><span style="color:#a6e22e">getFields</span><span style="color:#f92672">().</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>field <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+  FieldHelpers<span style="color:#f92672">.</span><span style="color:#a6e22e">addUnmarkedFieldComponent</span><span style="color:#f92672">(</span>field<span style="color:#f92672">,</span> panel<span style="color:#f92672">);</span>
+<span style="color:#f92672">});</span>
+</code></pre></div><p>The <code>accept</code> method can take arguments of arbitrary (object-) types.
+The argument type is reflected in the type parameter <code>T</code> which is also mentioned with the name of the interface.</p>
+<p>Let&rsquo;s compare the above definition of the <code>Consumer</code> interface with the definition below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ObjectConsumer</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">accept</span><span style="color:#f92672">(</span>Object o<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Here, the <code>accept</code> method can also take arguments of arbitrary (object-) types.
+But the argument type is not mentioned with the name of the interface.
+As a consequence, when implementing the accept method (for example with a <a href="../functional_interfaces">lambda expression</a>) there are no compile time guarantees about the type of its argument (other than that it is an instance of <code>Object</code>.)</p>
+<p>In the application of <code>forEach</code> above, the type parameters of <code>Iterable&lt;T&gt;</code> and <code>Consumer&lt;T&gt;</code> are linked in such a way that, when implementing the <code>accept</code> method, we can be sure that the argument is of type <code>T</code>. A type cast at run-time is not necessary because we get a compile-time guarantee that the type <code>T</code> equals <code>Field</code>.</p>
+<p>We will see more examples of how type parameters can be used to express compile-time guarantees about types.
+Those guarantees help avoid programming errors which would result in compiler errors rather than exceptions like, for example, class cast exceptions.</p>
+<p>If you came here via the <a href="../../static_methods/static_helpers">static helpers</a> section, I recommend you go back there now and come back here later when more examples are referenced from the tutorial.</p>
+<h2 id="optional-values">Optional values</h2>
+<p>Optional values can be either empty or present and the <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html">Optional class</a> provides methods <code>isEmpty</code> and <code>isPresent</code> to test which of the two is the case.
+The method <code>orElse</code> can be used to access the wrapped value providing a default value which is returned in the empty case, and <code>orElseThrow</code> is similar but throws an exception if it is called on an empty value.
+The <code>Optional</code> class has a type parameter for the type of the nested value.
+For example, the following statements access a value of type <code>Optional&lt;String&gt;</code> to output the wrapped value if it is present.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>optionalString<span style="color:#f92672">.</span><span style="color:#a6e22e">isPresent</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>optionalString<span style="color:#f92672">.</span><span style="color:#a6e22e">orElseThrow</span><span style="color:#f92672">());</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Howewer, those methods are often avoided in favor of other methods to transform or access optional values.
+We can rewrite the above statements using the method <code>ifPresent</code> which looks much cleaner:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">optionalString<span style="color:#f92672">.</span><span style="color:#a6e22e">ifPresent</span><span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">::</span>println<span style="color:#f92672">);</span>
+</code></pre></div><p>The method <code>ifPresent</code> takes a consumer as argument.
+The <code>accept</code> method of the consumer is called with the wrapped value if the optional value is present; otherwise <code>accept</code> is not called.
+In this example, we pass a <a href="../functional_interfaces#method-references">method reference</a>.
+Method references (like lambda expressions) are converted to instances of functional interfaces automatically.</p>
+<p>As another example, the following expression of type <code>Optional&lt;Player&gt;</code> computes the <code>Player</code> who marked a given <code>Field</code> without an explicit <code>null</code>- or <code>isEmpty</code>-check.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Optional<span style="color:#f92672">.</span><span style="color:#a6e22e">ofNullable</span><span style="color:#f92672">(</span>field<span style="color:#f92672">.</span><span style="color:#a6e22e">getMark</span><span style="color:#f92672">()).</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Mark<span style="color:#f92672">::</span>getPlayer<span style="color:#f92672">)</span>
+</code></pre></div><p>We use the static constructor method <code>ofNullable</code> to create an optional value from the mark of a field that may be <code>null</code> in our game-state model.
+The result of <code>ofNullable</code> is empty if the argument is <code>null</code> and present otherwise.</p>
+<p>On the result, we call the <code>map</code> method which transforms the optional value using the given function if one is present.
+On empty values the <code>map</code> method returns an empty result and does not call the provided function.
+Again, we use a <a href="../functional_interfaces#method-references">method reference</a> as argument &ndash; this time to access the player attribute of the optional mark.</p>
+<p>Another useful method on optional values is <code>flatMap</code>.
+The <code>flatMap</code> method combines the <code>map</code> operation with a subsequent flattening step.
+For example, we can pass the identity function to <code>flatMap</code> to flatten nested optional values.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">static</span> Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">flat</span><span style="color:#f92672">(</span>Optional<span style="color:#f92672">&lt;</span>Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;&gt;</span> nested<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">return</span> nested<span style="color:#f92672">.</span><span style="color:#a6e22e">flatMap</span><span style="color:#f92672">(</span>optional <span style="color:#f92672">-&gt;</span> optional<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>In this case we do not need the mapping functionality of <code>flatMap</code>.
+Usually, <code>flatMap</code> is used to apply multiple functions with optional results in a row.
+Chaining functions with optional results using <code>flatMap</code> helps avoid null-pointer exceptions compared to chaining methods that may return <code>null</code>.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        &copy; 2020, Sebastian Fischer,
+<a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/"
+  >CC-BY-ND 4.0</a
+>
+
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#optional-values">Optional values</a></li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

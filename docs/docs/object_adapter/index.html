@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Step 3: A base class for typed object adapters Reviewing the Adapter instances discussed in the previous step, we can observe some similarities. All adapter classes have a static method from. To make their similarities more apparent, here are the corresponding definitions.
+// gama.adapters.access.FieldAccess public class FieldAccess { public static FieldAccess from(final Field field) { return field.eAdapters().stream() // 	.filter(FieldAccess.class::isInstance) // 	.map(FieldAccess.class::cast) // 	.findFirst().orElseThrow(); } /* other definitions omitted */ } // game.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Object Adapter" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://sebfisch.github.io/emf-adapter-tutorial/docs/object_adapter/" />
+
+<title>Object Adapter | EMF Adapter Tutorial</title>
+<link rel="manifest" href="/emf-adapter-tutorial/manifest.json">
+<link rel="icon" href="/emf-adapter-tutorial/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/emf-adapter-tutorial/book.min.e161f1fe2b283b6a43c29a52fde96e2387fade573e78efa6701d44c8499da76b.css" integrity="sha256-4WHx/isoO2pDwppS/eluI4f63lc&#43;eO&#43;mcB1EyEmdp2s="><link rel="alternate" type="application/rss+xml" href="http://sebfisch.github.io/emf-adapter-tutorial/docs/object_adapter/index.xml" title="EMF Adapter Tutorial" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/emf-adapter-tutorial"><span>EMF Adapter Tutorial</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/" class="">Tic-Tac-Toe App</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/game_state_model/" class="">Game-State Model</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/static_constructors/" class="">Static Constructors</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/static_helpers/" class="">Static Helpers</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/" class="">Plain Adapters</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/model_access/" class="">Model Access</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/user_interface/" class="">User Interface</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/adapter_factories/" class="">Adapter Factories</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/object_adapter/" class="active">Object Adapter</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/" class="">Programming Tasks</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/typed_adapters/" class="">Typed Adapters</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/winning_check/" class="">Winning Check</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/escape_restart/" class="">Escape Restart</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/" class="">Background</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/functional_interfaces/" class="">Functional Interfaces</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/type_parameters/" class="">Type Parameters</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/stream_programming/" class="">Stream Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/resources/" class="">Resources</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+  </ul>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/emf-adapter-tutorial/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Object Adapter</strong>
+
+  <label for="toc-control">
+    <img src="/emf-adapter-tutorial/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents"></nav>
+
+
+    </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="step-3-a-base-class-for-typed-object-adapters">Step 3: A base class for typed object adapters</h1>
+<p>Reviewing the <code>Adapter</code> instances discussed in the previous step, we can observe some similarities. All adapter classes have a static method <code>from</code>.
+To make their similarities more apparent, here are the corresponding definitions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// gama.adapters.access.FieldAccess
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FieldAccess</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> FieldAccess <span style="color:#a6e22e">from</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> Field field<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span> field<span style="color:#f92672">.</span><span style="color:#a6e22e">eAdapters</span><span style="color:#f92672">().</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">()</span> <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>				<span style="color:#f92672">.</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>FieldAccess<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">::</span>isInstance<span style="color:#f92672">)</span> <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>				<span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>FieldAccess<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">::</span>cast<span style="color:#f92672">)</span> <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>				<span style="color:#f92672">.</span><span style="color:#a6e22e">findFirst</span><span style="color:#f92672">().</span><span style="color:#a6e22e">orElseThrow</span><span style="color:#f92672">();</span>
+	<span style="color:#f92672">}</span> <span style="color:#75715e">/* other definitions omitted */</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e">// game.adapters.ui.FieldUi
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FieldUi</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> FieldUi <span style="color:#a6e22e">from</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> Field field<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span> field<span style="color:#f92672">.</span><span style="color:#a6e22e">eAdapters</span><span style="color:#f92672">().</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">()</span> <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>				<span style="color:#f92672">.</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>FieldUi<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">::</span>isInstance<span style="color:#f92672">)</span> <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>				<span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>FieldUi<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">::</span>cast<span style="color:#f92672">)</span> <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>				<span style="color:#f92672">.</span><span style="color:#a6e22e">findFirst</span><span style="color:#f92672">().</span><span style="color:#a6e22e">orElseThrow</span><span style="color:#f92672">();</span>
+	<span style="color:#f92672">}</span> <span style="color:#75715e">/* other definitions omitted */</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e">// game.adapters.ui.BoardUi
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BoardUi</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> BoardUi <span style="color:#a6e22e">from</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> Board board<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span> board<span style="color:#f92672">.</span><span style="color:#a6e22e">eAdapters</span><span style="color:#f92672">().</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">()</span> <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>				<span style="color:#f92672">.</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>BoardUi<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">::</span>isInstance<span style="color:#f92672">)</span> <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>				<span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>BoardUi<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">::</span>cast<span style="color:#f92672">)</span> <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>				<span style="color:#f92672">.</span><span style="color:#a6e22e">findFirst</span><span style="color:#f92672">().</span><span style="color:#a6e22e">orElseThrow</span><span style="color:#f92672">();</span>
+	<span style="color:#f92672">}</span> <span style="color:#75715e">/* other definitions omitted */</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>All of these methods use <a href="../background/stream_programming">stream programming</a> to query an adapter of the corresponding type from a model instance. The only difference is in the types and corresponding classes used to <code>map</code> and <code>filter</code> the stream of adapters.</p>
+<p>Another observation is that all adapters wrap their target and provide access through the methods <code>getTarget</code> and <code>setTarget</code> with very similar definitions.</p>
+<p>We can abstract away those similarities in a parameterized class <code>ObjectAdapter</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// util.ObjectAdapter
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ObjectAdapter</span><span style="color:#f92672">&lt;</span>T <span style="color:#66d9ef">extends</span> EObject<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> Adapter <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Class<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> targetC<span style="color:#f92672">;</span>
+	<span style="color:#66d9ef">private</span> T target<span style="color:#f92672">;</span>
+
+	<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ObjectAdapter</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> Class<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> targetC<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">targetC</span> <span style="color:#f92672">=</span> targetC<span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+
+	<span style="color:#a6e22e">@Override</span>
+	<span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">getTarget</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span> target<span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+
+	<span style="color:#a6e22e">@Override</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setTarget</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> Notifier newTarget<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>targetC<span style="color:#f92672">.</span><span style="color:#a6e22e">isInstance</span><span style="color:#f92672">(</span>newTarget<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+			setTarget<span style="color:#f92672">(</span>targetC<span style="color:#f92672">.</span><span style="color:#a6e22e">cast</span><span style="color:#f92672">(</span>newTarget<span style="color:#f92672">));</span>
+		<span style="color:#f92672">}</span>
+	<span style="color:#f92672">}</span>
+
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setTarget</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> T newTarget<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		target <span style="color:#f92672">=</span> newTarget<span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+
+	<span style="color:#a6e22e">@Override</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isAdapterForType</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> Object object<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span> targetC<span style="color:#f92672">.</span><span style="color:#a6e22e">isInstance</span><span style="color:#f92672">(</span>object<span style="color:#f92672">);</span>
+	<span style="color:#f92672">}</span>
+	<span style="color:#75715e">// more definitions follow
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><p>The <a href="../background/type_parameters">type parameter</a> <code>T</code> is bounded by the <code>EObject</code> interface which extends <code>Notifier</code> and is implemented by generated object types automatically.
+As a consequence, <code>ObjectAdapter</code> instances can only be created for types that implement <code>EObject</code>.</p>
+<p>Like previously, the <code>getTarget</code> method has a more specific type than the overridden method from the <code>Adapter</code> interface to increase type safety when accessing the target.</p>
+<p>The definition of <code>setTarget</code> uses the target class passed to the constructor to check if the new target has the correct type.
+We provide a more specific <code>setTarget</code> method in addition to the original one.
+It can be overridden to support additional processing when setting a target without repeating the type check.</p>
+<p>There is also an implementation for <code>notifyChanged</code> along with a more specific variant that, by default, does nothing.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// util.ObjectAdapter
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">@Override</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">notifyChanged</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> Notification n<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>n<span style="color:#f92672">.</span><span style="color:#a6e22e">isTouch</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span><span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+	notifyChanged<span style="color:#f92672">(</span>n<span style="color:#f92672">.</span><span style="color:#a6e22e">getEventType</span><span style="color:#f92672">(),</span> n<span style="color:#f92672">.</span><span style="color:#a6e22e">getFeatureID</span><span style="color:#f92672">(</span>targetC<span style="color:#f92672">));</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">notifyChanged</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> eventType<span style="color:#f92672">,</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> featureId<span style="color:#f92672">)</span> <span style="color:#f92672">{}</span>
+</code></pre></div><p>In many cases, the more specific version of <code>notifyChanged</code> is more convenient because it provides access to the event type and feature ID wrapped in the notification.
+In cases where this information is not sufficient, the original variant can be overridden instead.</p>
+<p>Finally, we look at the signature of the generalized static <code>from</code> method.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// util.ObjectAdapter
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>T <span style="color:#66d9ef">extends</span> EObject<span style="color:#f92672">,</span> A <span style="color:#66d9ef">extends</span> ObjectAdapter<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> T<span style="color:#f92672">&gt;&gt;</span> <span style="color:#75715e">//
+</span><span style="color:#75715e"></span>A <span style="color:#a6e22e">from</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> T object<span style="color:#f92672">,</span> <span style="color:#66d9ef">final</span> Class<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">extends</span> A<span style="color:#f92672">&gt;</span> adapterC<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	<span style="color:#75715e">// stream programming
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><p>If this looks daunting, just note that we could call it like this, if <code>board</code> is an instance of <code>Board</code> and <code>BoardUi</code> would be a subclass of <code>ObjectAdapter&lt;Board&gt;</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">final</span> BoardUi boardUi <span style="color:#f92672">=</span> ObjectAdapter<span style="color:#f92672">.</span><span style="color:#a6e22e">from</span><span style="color:#f92672">(</span>board<span style="color:#f92672">,</span> BoardUi<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+</code></pre></div><p>For convenience, the <code>ObjectAdapter</code> class provides two more static methods to query adapters.
+The method <code>fromContents</code> queries adapters from direct or indirect contents of a given object.
+The method <code>fromContainer</code> queries adapters from direct or indirect containers of a a given object.</p>
+<p>The complete implementation of the <code>ObjectAdapter</code> class is in the <a href="https://github.com/sebfisch/emf-adapter-tutorial-code/tree/step3-object-adapter-v1/de.sebfisch.tictactoe/src/util">util package</a>.</p>
+<p>If you followed the tutorial up to this step, you are now ready to apply what you learned by completing some <a href="../programming_tasks">programming tasks</a>.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        &copy; 2020, Sebastian Fischer,
+<a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/"
+  >CC-BY-ND 4.0</a
+>
+
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents"></nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

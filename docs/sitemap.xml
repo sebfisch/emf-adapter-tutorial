@@ -3,8 +3,103 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://sebfisch.github.io/emf-adapter-tutorial/docs/static_methods/</loc>
+    <lastmod>2020-06-17T12:33:17+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sebfisch.github.io/emf-adapter-tutorial/docs/static_methods/game_state_model/</loc>
+    <lastmod>2020-06-16T08:58:17+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sebfisch.github.io/emf-adapter-tutorial/docs/static_methods/static_constructors/</loc>
+    <lastmod>2020-06-17T11:34:27+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sebfisch.github.io/emf-adapter-tutorial/docs/static_methods/static_helpers/</loc>
+    <lastmod>2020-06-17T12:33:17+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sebfisch.github.io/emf-adapter-tutorial/docs/plain_adapters/</loc>
+    <lastmod>2020-06-17T23:11:13+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sebfisch.github.io/emf-adapter-tutorial/docs/plain_adapters/model_access/</loc>
+    <lastmod>2020-06-17T23:11:13+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sebfisch.github.io/emf-adapter-tutorial/docs/plain_adapters/user_interface/</loc>
+    <lastmod>2020-06-17T23:11:13+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sebfisch.github.io/emf-adapter-tutorial/docs/plain_adapters/adapter_factories/</loc>
+    <lastmod>2020-06-17T23:11:13+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sebfisch.github.io/emf-adapter-tutorial/docs/object_adapter/</loc>
+    <lastmod>2020-06-18T00:07:40+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sebfisch.github.io/emf-adapter-tutorial/docs/programming_tasks/</loc>
+    <lastmod>2020-06-18T00:07:40+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sebfisch.github.io/emf-adapter-tutorial/docs/programming_tasks/typed_adapters/</loc>
+    <lastmod>2020-06-18T00:07:40+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sebfisch.github.io/emf-adapter-tutorial/docs/programming_tasks/winning_check/</loc>
+    <lastmod>2020-06-18T00:07:40+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sebfisch.github.io/emf-adapter-tutorial/docs/programming_tasks/escape_restart/</loc>
+    <lastmod>2020-06-18T00:07:40+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sebfisch.github.io/emf-adapter-tutorial/docs/background/</loc>
+    <lastmod>2020-06-15T08:01:38+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sebfisch.github.io/emf-adapter-tutorial/docs/background/functional_interfaces/</loc>
+    <lastmod>2020-06-17T23:11:13+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sebfisch.github.io/emf-adapter-tutorial/docs/background/type_parameters/</loc>
+    <lastmod>2020-06-17T23:11:13+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sebfisch.github.io/emf-adapter-tutorial/docs/background/stream_programming/</loc>
+    <lastmod>2020-06-18T00:38:41+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sebfisch.github.io/emf-adapter-tutorial/docs/resources/</loc>
+    <lastmod>2020-06-17T12:33:17+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://sebfisch.github.io/emf-adapter-tutorial/docs/</loc>
+    <lastmod>2020-06-18T00:38:41+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://sebfisch.github.io/emf-adapter-tutorial/</loc>
-    <lastmod>2020-05-20T12:08:59+02:00</lastmod>
+    <lastmod>2020-06-17T12:33:17+02:00</lastmod>
   </url>
   
 </urlset>

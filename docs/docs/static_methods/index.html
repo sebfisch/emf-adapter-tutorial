@@ -2,20 +2,19 @@
 <html lang="en" dir=>
 
 <head>
-	<meta name="generator" content="Hugo 0.71.0" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Using EMF adapters The Eclipse Modelling Framework (EMF) provides an Adapter Interface that can be implemented to observe model instances or extend their functionality. EMF provides mechanisms to generate adapters, for example for editing. Here, however, we will focus on writing adapters ourselves and associating them with model instances.
-First, we will look at an application that can be used to play Tic-Tac-Toe. The game state of this application is modeled using EMF and additional functionality is implemented in static methods.">
-<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Using EMF adapters" />
+<meta name="description" content="Step 1: An application to play Tic-Tac-Toe We start our tutorial by inspecting an application to play Tic-Tac-Toe. When started, the app shows an empty board with buttons that can be used to place marks in the correspondig field of the board. Players take turns to place a mark until the game ends.
+The source code underlying this tutorial is available in a git repository. To make it easier to follow along, tags are defined for the different steps we will take.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Tic-Tac-Toe App" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="http://sebfisch.github.io/emf-adapter-tutorial/" />
+<meta property="og:url" content="http://sebfisch.github.io/emf-adapter-tutorial/docs/static_methods/" />
 
-<title>Using EMF adapters | EMF Adapter Tutorial</title>
+<title>Tic-Tac-Toe App | EMF Adapter Tutorial</title>
 <link rel="manifest" href="/emf-adapter-tutorial/manifest.json">
 <link rel="icon" href="/emf-adapter-tutorial/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="/emf-adapter-tutorial/book.min.e161f1fe2b283b6a43c29a52fde96e2387fade573e78efa6701d44c8499da76b.css" integrity="sha256-4WHx/isoO2pDwppS/eluI4f63lc&#43;eO&#43;mcB1EyEmdp2s="><link rel="alternate" type="application/rss+xml" href="http://sebfisch.github.io/emf-adapter-tutorial/index.xml" title="EMF Adapter Tutorial" />
+<link rel="stylesheet" href="/emf-adapter-tutorial/book.min.e161f1fe2b283b6a43c29a52fde96e2387fade573e78efa6701d44c8499da76b.css" integrity="sha256-4WHx/isoO2pDwppS/eluI4f63lc&#43;eO&#43;mcB1EyEmdp2s="><link rel="alternate" type="application/rss+xml" href="http://sebfisch.github.io/emf-adapter-tutorial/docs/static_methods/index.xml" title="EMF Adapter Tutorial" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -62,7 +61,7 @@ https://github.com/alex-shpak/hugo-book
         <li>
           
   
-    <a href="/emf-adapter-tutorial/docs/static_methods/" class="">Tic-Tac-Toe App</a>
+    <a href="/emf-adapter-tutorial/docs/static_methods/" class="active">Tic-Tac-Toe App</a>
   
 
           
@@ -340,7 +339,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/emf-adapter-tutorial/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Using EMF adapters</strong>
+  <strong>Tic-Tac-Toe App</strong>
 
   <label for="toc-control">
     <img src="/emf-adapter-tutorial/svg/toc.svg" class="book-icon" alt="Table of Contents" />
@@ -362,28 +361,24 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="using-emf-adapters">Using EMF adapters</h1>
-<p>The <a href="https://www.eclipse.org/modeling/emf/">Eclipse Modelling Framework (EMF)</a> provides an <a href="https://download.eclipse.org/modeling/emf/emf/javadoc/2.11/org/eclipse/emf/common/notify/Adapter.html">Adapter Interface</a> that can be implemented to observe model instances or extend their functionality.
-EMF provides mechanisms to generate adapters, for example for editing.
-Here, however, we will focus on writing adapters ourselves and associating them with model instances.</p>
-<p>First, we will look at an application that can be used to play <a href="https://en.wikipedia.org/wiki/Tic-tac-toe">Tic-Tac-Toe</a>.
-The game state of this application is modeled using EMF and additional functionality is implemented in static methods.
-Then we will refactor the application to implement the same functionality using EMF adapters.
-We will observe opportunities to extract duplicated parts of the adapter implementations into a common base class.
-As the implementation uses <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">lambda expressions</a>, <a href="https://docs.oracle.com/javase/tutorial/java/generics/index.html">type parameters</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html">streams</a>, we will discuss those concepts along the way.</p>
-<p><img src="tic-tac-toe.png" alt="Player X won Tic-Tac-Toe playing in our application." /></p>
-<p>If, after following this tutorial, you want to practice using EMF adapters, there are programming tasks related to</p>
-<ul>
-<li>refactoring the adapters to use the base class for type safe adapters of EMF objects</li>
-<li>as well as extending their functionality further by adding a check of the winning condition</li>
-<li>and the ability to restart games.</li>
-</ul>
-<p>The source code discussed in this tutorial is available in a <a href="https://github.com/sebfisch/emf-adapter-tutorial-code">git repository</a> &ndash; including solutions to the programming tasks.
-Even if you don&rsquo;t have <a href="https://git-scm.com/">git</a> you can still look at the code online in the linked repository.
-You can also download different versions of the code as a zip files there.
-However, I recommend you use git if you want to write your own code solving the programming tasks.
-Using git allows you to easily switch between intermediate steps in the development without downloading seperate zip files for each step.</p>
-<p>Let&rsquo;s start by looking at the <a href="docs/static_methods">Tic-Tac-Toe app</a>.</p>
+  <article class="markdown"><h1 id="step-1-an-application-to-play-tic-tac-toe">Step 1: An application to play Tic-Tac-Toe</h1>
+<p>We start our tutorial by inspecting an application to play Tic-Tac-Toe.
+When started, the app shows an empty board with buttons that can be used to place marks in the correspondig field of the board.
+Players take turns to place a mark until the game ends.</p>
+<p><img src="tic-tac-toe.gif" alt="Player O made a mistake and player X has a winning strategy." /></p>
+<p>The source code underlying this tutorial is available in a <a href="https://github.com/sebfisch/emf-adapter-tutorial-code">git repository</a>.
+To make it easier to follow along, tags are defined for the different steps we will take.</p>
+<p>To work with the code you need Eclipse with Modelling Tools.</p>
+<p>After importing the project inside the repository into your workspace, you can start the class <code>app/TicTacToe</code> to run the application.
+If you don&rsquo;t want to clutter your workspace, you can start Eclipse with the root folder of the repository as workspace.</p>
+<p>Start now by cloning the repository and creating a branch for the first step.</p>
+<pre><code>git clone https://github.com/sebfisch/emf-adapter-tutorial-code
+cd emf-adapter-tutorial-code
+git checkout -b step1 step1-static-methods-v1
+</code></pre>
+<p>Alternatively, you can download the corresponding code in a <a href="https://github.com/sebfisch/emf-adapter-tutorial-code/archive/step1-static-methods-v1.zip">zip file</a>.</p>
+<p>If you don&rsquo;t want to run the game or write code yourself, you can look at existing code for the <a href="https://github.com/sebfisch/emf-adapter-tutorial-code/tree/step1-static-methods-v1/de.sebfisch.tictactoe">first step</a> online.</p>
+<p>Next, we will discuss the <a href="game_state_model">game-state model</a>.</p>
 </article>
  
       

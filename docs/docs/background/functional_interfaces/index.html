@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Functional interfaces and lambda expressions Functional interfaces are interfaces with exactly one method (and possibly additional default methods.) We have seen that Runnable is a functional interface. It contains exactly one method run without arguments that does not return a result:
+interface Runnable { void run(); } We used a lambda expression to create an instance of this interface in the static main method of the TicTacToe class:
+SwingUtilities.invokeLater(() -&gt; new TicTacToe().">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Functional Interfaces" />
+<meta property="og:description" content="Functional interfaces and lambda expressions Functional interfaces are interfaces with exactly one method (and possibly additional default methods.) We have seen that Runnable is a functional interface. It contains exactly one method run without arguments that does not return a result:
+interface Runnable { void run(); } We used a lambda expression to create an instance of this interface in the static main method of the TicTacToe class:
+SwingUtilities.invokeLater(() -&gt; new TicTacToe()." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sebfisch.github.io/emf-adapter-tutorial/docs/background/functional_interfaces/" />
+<meta property="article:modified_time" content="2020-06-17T23:11:13+02:00" />
+<title>Functional Interfaces | EMF Adapter Tutorial</title>
+<link rel="manifest" href="/emf-adapter-tutorial/manifest.json">
+<link rel="icon" href="/emf-adapter-tutorial/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/emf-adapter-tutorial/book.min.e161f1fe2b283b6a43c29a52fde96e2387fade573e78efa6701d44c8499da76b.css" integrity="sha256-4WHx/isoO2pDwppS/eluI4f63lc&#43;eO&#43;mcB1EyEmdp2s="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/emf-adapter-tutorial"><span>EMF Adapter Tutorial</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/" class="">Tic-Tac-Toe App</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/game_state_model/" class="">Game-State Model</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/static_constructors/" class="">Static Constructors</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/static_helpers/" class="">Static Helpers</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/" class="">Plain Adapters</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/model_access/" class="">Model Access</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/user_interface/" class="">User Interface</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/adapter_factories/" class="">Adapter Factories</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/object_adapter/" class="">Object Adapter</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/" class="">Programming Tasks</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/typed_adapters/" class="">Typed Adapters</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/winning_check/" class="">Winning Check</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/escape_restart/" class="">Escape Restart</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/" class="">Background</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/functional_interfaces/" class="active">Functional Interfaces</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/type_parameters/" class="">Type Parameters</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/stream_programming/" class="">Stream Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/resources/" class="">Resources</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+  </ul>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/emf-adapter-tutorial/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Functional Interfaces</strong>
+
+  <label for="toc-control">
+    <img src="/emf-adapter-tutorial/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#consumers">Consumers</a></li>
+    <li><a href="#functions-and-predicates">Functions and predicates</a></li>
+    <li><a href="#method-references">Method references</a></li>
+  </ul>
+</nav>
+
+
+    </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="functional-interfaces-and-lambda-expressions">Functional interfaces and lambda expressions</h1>
+<p>Functional interfaces are interfaces with exactly one method (and possibly additional <a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html">default methods</a>.)
+We have seen that <code>Runnable</code> is a functional interface.
+It contains exactly one method <code>run</code> without arguments that does not return a result:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Runnable</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>We used a lambda expression to create an instance of this interface in the static <code>main</code> method of the <code>TicTacToe</code> class:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">SwingUtilities<span style="color:#f92672">.</span><span style="color:#a6e22e">invokeLater</span><span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">new</span> TicTacToe<span style="color:#f92672">().</span><span style="color:#a6e22e">show</span><span style="color:#f92672">());</span>
+</code></pre></div><p>A more verbose way of writing this line would be to explicitly assign a variable containing the <code>Runnable</code> instance.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">final</span> Runnable showNewWindow <span style="color:#f92672">=</span> <span style="color:#f92672">()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">new</span> TicTacToe<span style="color:#f92672">().</span><span style="color:#a6e22e">show</span><span style="color:#f92672">();</span>
+SwingUtilities<span style="color:#f92672">.</span><span style="color:#a6e22e">invokeLater</span><span style="color:#f92672">(</span>showNewWindow<span style="color:#f92672">);</span>
+</code></pre></div><p>The lambda expression is transformed into a <code>Runnable</code> instance automatically, because <code>Runnable</code> is a functinal interface and the lambda expression represents its <code>run</code> method.</p>
+<p>A more verbose way to define the lambda expression would be:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">final</span> Runnable showNewWindow <span style="color:#f92672">=</span> <span style="color:#f92672">()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">new</span> TicTacToe<span style="color:#f92672">().</span><span style="color:#a6e22e">show</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">};</span>
+SwingUtilities<span style="color:#f92672">.</span><span style="color:#a6e22e">invokeLater</span><span style="color:#f92672">(</span>showNewWindow<span style="color:#f92672">);</span>
+</code></pre></div><p>We could also define the instance explicitly using an anonymous class.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">final</span> Runnable showNewWindow <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Runnable<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+	<span style="color:#a6e22e">@Override</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">new</span> TicTacToe<span style="color:#f92672">().</span><span style="color:#a6e22e">show</span><span style="color:#f92672">();</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">};</span>
+SwingUtilities<span style="color:#f92672">.</span><span style="color:#a6e22e">invokeLater</span><span style="color:#f92672">(</span>showNewWindow<span style="color:#f92672">);</span>
+</code></pre></div><p>By using lambda expressions we let the compiler take care of this instance declaration.
+In this example we only save five lines of code.
+But those lines add up.
+Programs containing lambda expressions can be significantly more concise than programs without them, as we will see in other examples.</p>
+<p>If you came here via the <a href="../../static_methods/static_constructors">static constructors</a> section, I recommend you go back there now and come back here later when more examples are referenced from the tutorial.</p>
+<h2 id="consumers">Consumers</h2>
+<p>Consumers are defined in the <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/function/package-summary.html">function package</a> that contains many pre-defined functional interfaces.
+Unlike the <code>run</code> method in <code>Runnable</code>, the <code>accept</code> method of <code>Consumers</code> takes an argument.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Consumer</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">accept</span><span style="color:#f92672">(</span>T t<span style="color:#f92672">);</span>
+	<span style="color:#75715e">// default methods omitted
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><p>Note that the <code>Consumer</code> interface has a type parameter for the argument type of <code>accept</code>.
+You can learn more about <a href="../type_parameters">type parameters</a> in another background section.</p>
+<p>Consumers can be passed as arguments to the <code>forEach</code> method of the <code>Iterable</code> interface as we have seen in the <a href="../../static_methods/static_helpers">static helpers</a> section:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">board<span style="color:#f92672">.</span><span style="color:#a6e22e">getFields</span><span style="color:#f92672">().</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>field <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+	FieldHelpers<span style="color:#f92672">.</span><span style="color:#a6e22e">addUnmarkedFieldComponent</span><span style="color:#f92672">(</span>field<span style="color:#f92672">,</span> panel<span style="color:#f92672">);</span>
+<span style="color:#f92672">});</span>
+</code></pre></div><p>Here, the lambda expression has an argument.
+It is transformed into an anonymous class just like before:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">board<span style="color:#f92672">.</span><span style="color:#a6e22e">getFields</span><span style="color:#f92672">().</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Consumer<span style="color:#f92672">&lt;</span>Field<span style="color:#f92672">&gt;()</span> <span style="color:#f92672">{</span>
+	<span style="color:#a6e22e">@Override</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">accept</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> Field field<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		FieldHelpers<span style="color:#f92672">.</span><span style="color:#a6e22e">addUnmarkedFieldComponent</span><span style="color:#f92672">(</span>field<span style="color:#f92672">,</span> panel<span style="color:#f92672">);</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">});</span>
+</code></pre></div><h2 id="functions-and-predicates">Functions and predicates</h2>
+<p>Another frequently used functional interface from the <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/function/package-summary.html">function package</a> is the <code>Function</code> interface.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Function</span><span style="color:#f92672">&lt;</span>Arg<span style="color:#f92672">,</span>Res<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+	Res <span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>Arg arg<span style="color:#f92672">);</span>
+	<span style="color:#75715e">// omitting default methods
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><p>Unlike the <code>accept</code> method of consumers, the <code>apply</code> method of functions returns a result.
+That&rsquo;s why the <code>Function</code> interface has two type parameters, one for the argument and one for the result.
+Instances of <code>Function</code> are supplied in calls to <code>map</code> and <code>flatMap</code> methods which can be used to transform optional or streamed values as we will see later.</p>
+<p>Yet another functional interface used frequently is the following one for predicates, that is, functions returning a boolean result.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Predicate</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">test</span><span style="color:#f92672">(</span>T t<span style="color:#f92672">);</span>
+	<span style="color:#75715e">// omitting default methods
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><p>We will use predicates for filtering [streams] later.</p>
+<p>If you came here via the <a href="../../static_methods/static_helpers">static helpers</a> section, I recommend you go back there now and come back here later when more examples are referenced from the tutorial.</p>
+<h2 id="method-references">Method references</h2>
+<p><a href="https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html">Method references</a> are an alternative syntax to lambda expressions that is also converted into instances of functional interfaces automatically.
+If you already read about <a href="../type_parameters#optional-values">optional values</a> in the background section on type parameters you came accross the following example.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">optionalString<span style="color:#f92672">.</span><span style="color:#a6e22e">ifPresent</span><span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">::</span>println<span style="color:#f92672">);</span>
+</code></pre></div><p>This statement means the same as the following statement which uses a lambda expression instead of a method reference.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">optionalString<span style="color:#f92672">.</span><span style="color:#a6e22e">ifPresent</span><span style="color:#f92672">(</span>string <span style="color:#f92672">-&gt;</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>string<span style="color:#f92672">));</span>
+</code></pre></div><p>In both statements, the argument to <code>isPresent</code> is converted into an instance of the <code>Consumer</code> interface similar to the following.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">optionalString<span style="color:#f92672">.</span><span style="color:#a6e22e">ifPresent</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Consumer<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;()</span> <span style="color:#f92672">{</span>
+	<span style="color:#a6e22e">@Override</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">accept</span><span style="color:#f92672">(</span>String string<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>string<span style="color:#f92672">);</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">});</span>
+</code></pre></div><p>Method references are transformed into instances of any functional interface, not just consumers.
+Let&rsquo;s reconsider the computation of the optional player whose mark is on a given <code>field</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Optional<span style="color:#f92672">.</span><span style="color:#a6e22e">ofNullable</span><span style="color:#f92672">(</span>field<span style="color:#f92672">.</span><span style="color:#a6e22e">getMark</span><span style="color:#f92672">()).</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Mark<span style="color:#f92672">::</span>getPlayer<span style="color:#f92672">)</span>
+</code></pre></div><p>In this example, the method reference <code>Mark::getPlayer</code> means the same as the following lambda expression.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Optional<span style="color:#f92672">.</span><span style="color:#a6e22e">ofNullable</span><span style="color:#f92672">(</span>field<span style="color:#f92672">.</span><span style="color:#a6e22e">getMark</span><span style="color:#f92672">()).</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>mark <span style="color:#f92672">-&gt;</span> mark<span style="color:#f92672">.</span><span style="color:#a6e22e">getPlayer</span><span style="color:#f92672">())</span>
+</code></pre></div><p>In both cases the argument to <code>map</code> is converted into an instance of <code>Function</code> similar to the following.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Optional<span style="color:#f92672">.</span><span style="color:#a6e22e">ofNullable</span><span style="color:#f92672">(</span>field<span style="color:#f92672">.</span><span style="color:#a6e22e">getMark</span><span style="color:#f92672">()).</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Function<span style="color:#f92672">&lt;</span>Mark<span style="color:#f92672">,</span>Player<span style="color:#f92672">&gt;()</span> <span style="color:#f92672">{</span>
+	<span style="color:#a6e22e">@Override</span>
+	<span style="color:#66d9ef">public</span> Player <span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>Mark mark<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span> mark<span style="color:#f92672">.</span><span style="color:#a6e22e">getPlayer</span><span style="color:#f92672">();</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">})</span>
+</code></pre></div><p>As you can see, method references can be created using objects (like <code>System.out</code> in the previous example) as well as classes (like <code>Mark</code> in this example) and type parameters are determined automatically by the compiler.
+You can read more about what exactly different kinds of <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html">method references</a> correspond to in external documentation.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        &copy; 2020, Sebastian Fischer,
+<a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/"
+  >CC-BY-ND 4.0</a
+>
+
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#consumers">Consumers</a></li>
+    <li><a href="#functions-and-predicates">Functions and predicates</a></li>
+    <li><a href="#method-references">Method references</a></li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

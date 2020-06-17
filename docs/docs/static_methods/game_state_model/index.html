@@ -2,21 +2,22 @@
 <html lang="en" dir=>
 
 <head>
-	<meta name="generator" content="Hugo 0.71.0" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Using EMF adapters The Eclipse Modelling Framework (EMF) provides an Adapter Interface that can be implemented to observe model instances or extend their functionality. EMF provides mechanisms to generate adapters, for example for editing. Here, however, we will focus on writing adapters ourselves and associating them with model instances.
-First, we will look at an application that can be used to play Tic-Tac-Toe. The game state of this application is modeled using EMF and additional functionality is implemented in static methods.">
-<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Using EMF adapters" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://sebfisch.github.io/emf-adapter-tutorial/" />
-
-<title>Using EMF adapters | EMF Adapter Tutorial</title>
+<meta name="description" content="Using EMF to model the game state This tutorial expects that you are familiar with modelling in EMF. If you are not, you might want to look at the EMF Tutorial first.
+Our model for the game state defines an enumeration type for players and classes for the board, fields and their marks.
+Fields are contained in boards and marks are optional and contained in fields. We also specify backwards (or upwards) so called container references for contained classes.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Game-State Model" />
+<meta property="og:description" content="Using EMF to model the game state This tutorial expects that you are familiar with modelling in EMF. If you are not, you might want to look at the EMF Tutorial first.
+Our model for the game state defines an enumeration type for players and classes for the board, fields and their marks.
+Fields are contained in boards and marks are optional and contained in fields. We also specify backwards (or upwards) so called container references for contained classes." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sebfisch.github.io/emf-adapter-tutorial/docs/static_methods/game_state_model/" />
+<meta property="article:modified_time" content="2020-06-16T08:58:17+02:00" />
+<title>Game-State Model | EMF Adapter Tutorial</title>
 <link rel="manifest" href="/emf-adapter-tutorial/manifest.json">
 <link rel="icon" href="/emf-adapter-tutorial/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="/emf-adapter-tutorial/book.min.e161f1fe2b283b6a43c29a52fde96e2387fade573e78efa6701d44c8499da76b.css" integrity="sha256-4WHx/isoO2pDwppS/eluI4f63lc&#43;eO&#43;mcB1EyEmdp2s="><link rel="alternate" type="application/rss+xml" href="http://sebfisch.github.io/emf-adapter-tutorial/index.xml" title="EMF Adapter Tutorial" />
-<!--
+<link rel="stylesheet" href="/emf-adapter-tutorial/book.min.e161f1fe2b283b6a43c29a52fde96e2387fade573e78efa6701d44c8499da76b.css" integrity="sha256-4WHx/isoO2pDwppS/eluI4f63lc&#43;eO&#43;mcB1EyEmdp2s="><!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
 -->
@@ -77,7 +78,7 @@ https://github.com/alex-shpak/hugo-book
         <li>
           
   
-    <a href="/emf-adapter-tutorial/docs/static_methods/game_state_model/" class="">Game-State Model</a>
+    <a href="/emf-adapter-tutorial/docs/static_methods/game_state_model/" class="active">Game-State Model</a>
   
 
         </li>
@@ -340,7 +341,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/emf-adapter-tutorial/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Using EMF adapters</strong>
+  <strong>Game-State Model</strong>
 
   <label for="toc-control">
     <img src="/emf-adapter-tutorial/svg/toc.svg" class="book-icon" alt="Table of Contents" />
@@ -362,28 +363,21 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="using-emf-adapters">Using EMF adapters</h1>
-<p>The <a href="https://www.eclipse.org/modeling/emf/">Eclipse Modelling Framework (EMF)</a> provides an <a href="https://download.eclipse.org/modeling/emf/emf/javadoc/2.11/org/eclipse/emf/common/notify/Adapter.html">Adapter Interface</a> that can be implemented to observe model instances or extend their functionality.
-EMF provides mechanisms to generate adapters, for example for editing.
-Here, however, we will focus on writing adapters ourselves and associating them with model instances.</p>
-<p>First, we will look at an application that can be used to play <a href="https://en.wikipedia.org/wiki/Tic-tac-toe">Tic-Tac-Toe</a>.
-The game state of this application is modeled using EMF and additional functionality is implemented in static methods.
-Then we will refactor the application to implement the same functionality using EMF adapters.
-We will observe opportunities to extract duplicated parts of the adapter implementations into a common base class.
-As the implementation uses <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">lambda expressions</a>, <a href="https://docs.oracle.com/javase/tutorial/java/generics/index.html">type parameters</a> and <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html">streams</a>, we will discuss those concepts along the way.</p>
-<p><img src="tic-tac-toe.png" alt="Player X won Tic-Tac-Toe playing in our application." /></p>
-<p>If, after following this tutorial, you want to practice using EMF adapters, there are programming tasks related to</p>
-<ul>
-<li>refactoring the adapters to use the base class for type safe adapters of EMF objects</li>
-<li>as well as extending their functionality further by adding a check of the winning condition</li>
-<li>and the ability to restart games.</li>
-</ul>
-<p>The source code discussed in this tutorial is available in a <a href="https://github.com/sebfisch/emf-adapter-tutorial-code">git repository</a> &ndash; including solutions to the programming tasks.
-Even if you don&rsquo;t have <a href="https://git-scm.com/">git</a> you can still look at the code online in the linked repository.
-You can also download different versions of the code as a zip files there.
-However, I recommend you use git if you want to write your own code solving the programming tasks.
-Using git allows you to easily switch between intermediate steps in the development without downloading seperate zip files for each step.</p>
-<p>Let&rsquo;s start by looking at the <a href="docs/static_methods">Tic-Tac-Toe app</a>.</p>
+  <article class="markdown"><h1 id="using-emf-to-model-the-game-state">Using EMF to model the game state</h1>
+<p>This tutorial expects that you are familiar with modelling in EMF.
+If you are not, you might want to look at the <a href="https://eclipsesource.com/blogs/tutorials/emf-tutorial/">EMF Tutorial</a> first.</p>
+<p>Our model for the game state defines an enumeration type for players and classes for the board, fields and their marks.</p>
+<p><img src="../model.png" alt="" /></p>
+<p>Fields are contained in boards and marks are optional and contained in fields.
+We also specify backwards (or upwards) so called container references for contained classes.
+These can be used to access the container in a type safe way.
+You can investigate the model in detail by looking at <code>model/game.ecore</code> using the Eclipse Modelling Tools.</p>
+<p>Note that the <code>Board</code> class defines an attribute for the current player.
+This attribute stores which player makes the next move and is updated after each move.</p>
+<p>For convenience, the <code>Field</code> class defines an attribute <code>index</code> which is the index of a field in the list of fields stored with boards. The <code>mark</code> reference in the <code>Field</code> class can be null.
+If it is not, the player hwo marked a field is stored in the <code>player</code> attribute of the <code>Mark</code> class.</p>
+<p>We can generate Java code for this model using the corresponding file <code>model/game.genmodel</code>. This will produce packages <code>game</code>, <code>game.impl</code> and <code>game.util</code> in the <code>src</code> folder of our project. The <code>game</code> package contains interfaces for every modelled type and a class <code>GameFactory</code> to create corresponding instances.</p>
+<p>Next, we will use the provided factory to define <a href="../static_constructors">static constructors</a>.</p>
 </article>
  
       

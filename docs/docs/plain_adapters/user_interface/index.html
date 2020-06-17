@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="User interface adapters We now turn the static helper methods for boards and fields that have been used to manage corresponding user interface components into adapters in the game.adapters.ui package.
+Field UI Apart from the wrapped Field instance the FieldUi adapter stores a button that can be clicked to mark the represented field.
+// game.adapters.ui.FieldUi public class FieldUi implements Adapter { private static final int LABEL_SIZE = 90; private static final Dimension FIELD_DIMENSIONS = new Dimension(100, 100); private Field field; private final JButton button; FieldUi() { button = new JButton(&#34;&#34;); button.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="User Interface" />
+<meta property="og:description" content="User interface adapters We now turn the static helper methods for boards and fields that have been used to manage corresponding user interface components into adapters in the game.adapters.ui package.
+Field UI Apart from the wrapped Field instance the FieldUi adapter stores a button that can be clicked to mark the represented field.
+// game.adapters.ui.FieldUi public class FieldUi implements Adapter { private static final int LABEL_SIZE = 90; private static final Dimension FIELD_DIMENSIONS = new Dimension(100, 100); private Field field; private final JButton button; FieldUi() { button = new JButton(&#34;&#34;); button." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sebfisch.github.io/emf-adapter-tutorial/docs/plain_adapters/user_interface/" />
+<meta property="article:modified_time" content="2020-06-17T23:11:13+02:00" />
+<title>User Interface | EMF Adapter Tutorial</title>
+<link rel="manifest" href="/emf-adapter-tutorial/manifest.json">
+<link rel="icon" href="/emf-adapter-tutorial/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/emf-adapter-tutorial/book.min.e161f1fe2b283b6a43c29a52fde96e2387fade573e78efa6701d44c8499da76b.css" integrity="sha256-4WHx/isoO2pDwppS/eluI4f63lc&#43;eO&#43;mcB1EyEmdp2s="><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/emf-adapter-tutorial"><span>EMF Adapter Tutorial</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/" class="">Tic-Tac-Toe App</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/game_state_model/" class="">Game-State Model</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/static_constructors/" class="">Static Constructors</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/static_methods/static_helpers/" class="">Static Helpers</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/" class="">Plain Adapters</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/model_access/" class="">Model Access</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/user_interface/" class="active">User Interface</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/plain_adapters/adapter_factories/" class="">Adapter Factories</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/object_adapter/" class="">Object Adapter</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/" class="">Programming Tasks</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/typed_adapters/" class="">Typed Adapters</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/winning_check/" class="">Winning Check</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/programming_tasks/escape_restart/" class="">Escape Restart</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/" class="">Background</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/functional_interfaces/" class="">Functional Interfaces</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/type_parameters/" class="">Type Parameters</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/background/stream_programming/" class="">Stream Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/emf-adapter-tutorial/docs/resources/" class="">Resources</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+  </ul>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/emf-adapter-tutorial/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>User Interface</strong>
+
+  <label for="toc-control">
+    <img src="/emf-adapter-tutorial/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#field-ui">Field UI</a></li>
+    <li><a href="#board-ui">Board UI</a></li>
+  </ul>
+</nav>
+
+
+    </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="user-interface-adapters">User interface adapters</h1>
+<p>We now turn the static helper methods for boards and fields that have been used to manage corresponding user interface components into adapters in the <a href="https://github.com/sebfisch/emf-adapter-tutorial-code/tree/step2-plain-adapters-v1/de.sebfisch.tictactoe/src/game/adapters/ui">game.adapters.ui package</a>.</p>
+<h2 id="field-ui">Field UI</h2>
+<p>Apart from the wrapped <code>Field</code> instance the <code>FieldUi</code> adapter stores a button that can be clicked to mark the represented field.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// game.adapters.ui.FieldUi
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FieldUi</span> <span style="color:#66d9ef">implements</span> Adapter <span style="color:#f92672">{</span>
+
+	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> LABEL_SIZE <span style="color:#f92672">=</span> 90<span style="color:#f92672">;</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> Dimension FIELD_DIMENSIONS <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Dimension<span style="color:#f92672">(</span>100<span style="color:#f92672">,</span> 100<span style="color:#f92672">);</span>
+
+	<span style="color:#66d9ef">private</span> Field field<span style="color:#f92672">;</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> JButton button<span style="color:#f92672">;</span>
+
+	FieldUi<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		button <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> JButton<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">);</span>
+		button<span style="color:#f92672">.</span><span style="color:#a6e22e">setPreferredSize</span><span style="color:#f92672">(</span>FIELD_DIMENSIONS<span style="color:#f92672">);</span>
+		button<span style="color:#f92672">.</span><span style="color:#a6e22e">addActionListener</span><span style="color:#f92672">(</span>_event <span style="color:#f92672">-&gt;</span> FieldAccess<span style="color:#f92672">.</span><span style="color:#a6e22e">from</span><span style="color:#f92672">(</span>field<span style="color:#f92672">).</span><span style="color:#a6e22e">makeMove</span><span style="color:#f92672">());</span>
+	<span style="color:#f92672">}</span>
+
+	<span style="color:#66d9ef">public</span> JComponent <span style="color:#a6e22e">getUnmarkedComponent</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span> button<span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+
+	<span style="color:#75715e">// more methods follow
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><p>Unlike the wrapped target, the button is assigned in the constructor.
+It has an attached action listener that uses the <code>FieldAccess</code> adapter for the wrapped field to register a corresponding move in the game state.
+Note that unlike in the previous version where the action listener also updated the user interface to reflect the move, this time the action listener does not update the user interface directly.</p>
+<p>Instead we use the <code>notifyChanged</code> method to update the user interface whenever a mark is placed on the wrapped field.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// game.adapters.ui.FieldUi
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">@Override</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">notifyChanged</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> Notification notification<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>notification<span style="color:#f92672">.</span><span style="color:#a6e22e">isTouch</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span><span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+	<span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>notification<span style="color:#f92672">.</span><span style="color:#a6e22e">getEventType</span><span style="color:#f92672">()</span> <span style="color:#f92672">==</span> Notification<span style="color:#f92672">.</span><span style="color:#a6e22e">SET</span> <span style="color:#f92672">&amp;&amp;</span>
+			notification<span style="color:#f92672">.</span><span style="color:#a6e22e">getFeatureID</span><span style="color:#f92672">(</span>Field<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">)</span> <span style="color:#f92672">==</span> GamePackage<span style="color:#f92672">.</span><span style="color:#a6e22e">FIELD__MARK</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		updateMark<span style="color:#f92672">();</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>We use several methods from the <code>Notification</code> class to determine that indeed the <code>mark</code> reference has been modified.
+If that is the case, we call <code>updateMark</code> defined as follows.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// game.adapters.ui.FieldUi
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">updateMark</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+	FieldAccess<span style="color:#f92672">.</span><span style="color:#a6e22e">from</span><span style="color:#f92672">(</span>field<span style="color:#f92672">).</span><span style="color:#a6e22e">getMarkingPlayer</span><span style="color:#f92672">().</span><span style="color:#a6e22e">ifPresent</span><span style="color:#f92672">(</span>player <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">final</span> JComponent child <span style="color:#f92672">=</span>
+			UiConstructors<span style="color:#f92672">.</span><span style="color:#a6e22e">boldLabel</span><span style="color:#f92672">(</span>player<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(),</span> LABEL_SIZE<span style="color:#f92672">);</span>
+		BoardUi<span style="color:#f92672">.</span><span style="color:#a6e22e">from</span><span style="color:#f92672">(</span>field<span style="color:#f92672">.</span><span style="color:#a6e22e">getBoard</span><span style="color:#f92672">()).</span><span style="color:#a6e22e">replaceChild</span><span style="color:#f92672">(</span>field<span style="color:#f92672">.</span><span style="color:#a6e22e">getIndex</span><span style="color:#f92672">(),</span> child<span style="color:#f92672">);</span>
+	<span style="color:#f92672">});</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>The implementation of this function is similar to its static version.
+Instead of taking a field as argument it delegates calls to the wrapped <code>field</code>, and instead of using static methods <code>getMarkingPlayer</code> and <code>replaceChild</code> it uses appropriate methods of corresponding adapters.</p>
+<h2 id="board-ui">Board UI</h2>
+<p>The user interface adapter for boards is similar to the adapters for fields discussed previously in that it wraps a target instance and provides a static <code>from</code> method to query adapters associated to boards.
+Similar to the <code>FieldUi</code> class, <code>BoardUi</code> also wraps a user interface component <code>panel</code> created in the constructor, so the <code>replaceChild</code> does not need to take it as argument.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// game.adapters.ui.BoardUi
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">replaceChild</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> index<span style="color:#f92672">,</span> <span style="color:#66d9ef">final</span> JComponent child<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	panel<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span>index<span style="color:#f92672">);</span>
+	panel<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>child<span style="color:#f92672">,</span> index<span style="color:#f92672">);</span>
+	panel<span style="color:#f92672">.</span><span style="color:#a6e22e">revalidate</span><span style="color:#f92672">();</span>
+	panel<span style="color:#f92672">.</span><span style="color:#a6e22e">repaint</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Another noteworthy method is <code>setTarget</code> to set the wrapped <code>Board</code> instance.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Override</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setTarget</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> Notifier target<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>target <span style="color:#66d9ef">instanceof</span> Board<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		board <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Board<span style="color:#f92672">)</span> target<span style="color:#f92672">;</span>
+		panel<span style="color:#f92672">.</span><span style="color:#a6e22e">removeAll</span><span style="color:#f92672">();</span>
+		board<span style="color:#f92672">.</span><span style="color:#a6e22e">getFields</span><span style="color:#f92672">().</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>field <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+			panel<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>FieldUi<span style="color:#f92672">.</span><span style="color:#a6e22e">from</span><span style="color:#f92672">(</span>field<span style="color:#f92672">).</span><span style="color:#a6e22e">getUnmarkedComponent</span><span style="color:#f92672">());</span>
+		<span style="color:#f92672">});</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>In addition to setting the wrapped <code>board</code> member if the <code>target</code> type matches, the panel is reset and initialized with buttons for all contained fields.</p>
+<p>Some methods with implementations that are very similar across different adapters have been omitted.
+Take a look at the <a href="https://github.com/sebfisch/emf-adapter-tutorial-code/tree/step2-plain-adapters-v1/de.sebfisch.tictactoe/src/game/adapters/ui">game.adapters.ui package</a> to inspect the complete source code.
+Later we will look at a shared <a href="../../object_adapter">base class</a> for adapters that can be used to avoid repetition when defining adapters.
+But first, let&rsquo;s see how adapters can be created and associated with model instances using <a href="../adapter_factories">adapter factories</a>.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        &copy; 2020, Sebastian Fischer,
+<a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/"
+  >CC-BY-ND 4.0</a
+>
+
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#field-ui">Field UI</a></li>
+    <li><a href="#board-ui">Board UI</a></li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
