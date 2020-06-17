@@ -27,6 +27,10 @@ Start now by cloning the repository and creating a branch for the first step.
     cd emf-adapter-tutorial-code
     git checkout -b step1 step1-static-methods-v1
 
+[zip file]: https://github.com/sebfisch/emf-adapter-tutorial-code/archive/step1-static-methods-v1.zip
+
+Alternatively, you can download the corresponding code in a [zip file].
+
 [first step]: https://github.com/sebfisch/emf-adapter-tutorial-code/tree/step1-static-methods-v1/de.sebfisch.tictactoe
 
 If you don't want to run the game or write code yourself, you can look at existing code for the [first step] online.

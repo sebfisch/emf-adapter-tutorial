@@ -148,4 +148,4 @@ It would be beneficial to trigger the user interface update as a reaction to arb
 
 In the [next part] of this tutorial we will refactor the Tic-Tac-Toe app to implement the suggested improvements using EMF adapters.
 
-[next part]: ../plain_adapters
+[next part]: ../../plain_adapters
