@@ -134,3 +134,7 @@ The method `fromContainer` queries adapters from direct or indirect containers o
 The complete implementation of the `ObjectAdapter` class is in the [util package].
 
 [util package]: https://github.com/sebfisch/emf-adapter-tutorial-code/tree/step3-object-adapter-v1/de.sebfisch.tictactoe/src/util
+
+If you followed the tutorial up to this step, you are now ready to apply what you learned by completing some [programming tasks].
+
+[programming tasks]: ../programming_tasks
